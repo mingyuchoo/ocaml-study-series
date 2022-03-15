@@ -24,12 +24,9 @@ opam install dune
 ### Create a first project
 
 ```bash
-mkdir <project-name>
+dune init project <project-name>
 cd <project-name>/
-dune init exe <project-name>
 dune build
-dune exec ./<project-name>.exe
-
 ```
 
 ## Install the OCaml language server
