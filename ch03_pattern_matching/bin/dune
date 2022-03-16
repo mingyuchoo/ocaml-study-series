@@ -1,0 +1,4 @@
+(executable
+ (public_name ch03_pattern_matching)
+ (name main)
+ (libraries ch03_pattern_matching))
