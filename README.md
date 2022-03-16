@@ -21,12 +21,29 @@ ocaml -version
 opam install dune
 ```
 
-### Create a first project
+### Initializing Projects
+
+``` bash
+dune init --help
+```
+
+#### Initializing an executable
 
 ```bash
-dune init project <project-name>
-cd <project-name>/
+dune init proj <project_name>
+cd <project_name>/
 dune build
+dune test
+dune exec <project_name>
+```
+
+#### Initializing a Library
+
+``` bash
+dune init proj --kind=lib <project_name>
+cd <project_name>/
+dune build
+dune test
 ```
 
 ## Install the OCaml language server
@@ -35,3 +52,9 @@ dune build
 opam install ocaml-lsp-server
 opam install merlin # for VIM and Emacs
 ```
+
+## References
+
+-<https://ocaml.org/docs/install.html>
+-<https://opam.ocaml.org/>
+-<https://dune.readthedocs.io/en/latest/quick-start.html>
