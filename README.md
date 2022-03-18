@@ -27,20 +27,20 @@ opam install dune
 dune init --help
 ```
 
-#### Initializing an executable
+#### From initializing to executing an executable
 
 ```bash
-dune init proj <project_name>
+dune init project <project_name>
 cd <project_name>/
 dune build
 dune test
 dune exec <project_name>
 ```
 
-#### Initializing a Library
+#### From initializing to testing a Library
 
 ``` bash
-dune init proj --kind=lib <project_name>
+dune init project --kind=lib <project_name>
 cd <project_name>/
 dune build
 dune test
