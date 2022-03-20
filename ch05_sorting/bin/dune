@@ -1,0 +1,4 @@
+(executable
+ (public_name ch05_sorting)
+ (name main)
+ (libraries ch05_sorting))
