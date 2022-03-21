@@ -1,0 +1,4 @@
+(executable
+ (public_name ch06_composition)
+ (name main)
+ (libraries lib))
