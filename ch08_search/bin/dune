@@ -1,0 +1,4 @@
+(executable
+ (public_name ch08_search)
+ (name main)
+ (libraries lib))
