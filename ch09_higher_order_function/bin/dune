@@ -1,0 +1,4 @@
+(executable
+ (public_name ch09_higher_order_function)
+ (name main)
+ (libraries lib))
