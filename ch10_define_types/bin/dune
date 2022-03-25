@@ -1,0 +1,4 @@
+(executable
+ (public_name ch10_define_types)
+ (name main)
+ (libraries lib))
