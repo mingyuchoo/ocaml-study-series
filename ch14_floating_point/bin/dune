@@ -1,0 +1,4 @@
+(executable
+ (public_name ch14_floating_point)
+ (name main)
+ (libraries lib))
