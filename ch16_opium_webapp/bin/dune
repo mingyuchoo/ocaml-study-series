@@ -1,0 +1,4 @@
+(executable
+ (public_name ch16_opium_webapp)
+ (name main)
+ (libraries ch16_opium_webapp opium))

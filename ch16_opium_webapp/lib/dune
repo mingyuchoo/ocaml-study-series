@@ -1,0 +1,3 @@
+(library
+ (name ch16_opium_webapp)
+ (libraries opium))
