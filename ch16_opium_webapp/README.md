@@ -2,14 +2,14 @@
 
 ## How to create a project
 
-```sh
+```bash
 dune init proj ch16_opium_webapp --libs opium
 ```
 
 
 ## How to build, test, and run
 
-```sh
+```bash
 dune build
 dune test
 dune exec $(basename ${PWD})
