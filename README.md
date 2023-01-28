@@ -1,3 +1,8 @@
+<p align="center">
+  <a href="https://github.com/mingyuchoo/ocaml-study-series/issues"><img alt="Issues" src="https://img.shields.io/github/issues/mingyuchoo/ocaml-study-series?color=appveyor" /></a>
+  <a href="https://github.com/mingyuchoo/ocaml-study-series/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/mingyuchoo/ocaml-study-series?color=appveyor" /></a>
+</p>
+
 # ocaml-study-series
 
 ## Install Ocaml Package Manager `opam`
