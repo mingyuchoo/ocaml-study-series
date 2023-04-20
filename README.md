@@ -58,6 +58,9 @@ dune test
 opam install ocaml-lsp-server
 opam install merlin # for VIM and Emacs
 ```
+## Applications written in Ocaml
+
+- <http://ocamlverse.net/content/apps.html>
 
 ## References
 
