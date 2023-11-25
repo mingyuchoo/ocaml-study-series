@@ -1,4 +1,4 @@
-# ch16_opium_webapp
+# README
 
 ## How to create a project
 
