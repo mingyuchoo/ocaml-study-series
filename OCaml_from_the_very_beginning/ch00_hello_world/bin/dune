@@ -1,4 +1,0 @@
-(executable
- (public_name ch00_hello_world)
- (name main)
- (libraries ch00_hello_world))
