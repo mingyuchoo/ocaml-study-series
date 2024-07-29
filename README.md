@@ -9,13 +9,13 @@
 ## Install Ocaml Package Manager `opam`
 
 ```bash
-sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
+bash -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)"
 ```
 
 ## Install OCaml Compiler
 
 ```bash
-opam init
+opam init -y
 eval $(opam env)
 which ocaml
 ocaml -version
@@ -24,10 +24,10 @@ ocaml -version
 ## Install the Dune build system
 
 ```bash
-opam install dune
+opam install dune ocaml-lsp-server odoc ocamlformat utop
 ```
 
-### Initializing Projects
+### Initialize a project
 
 ``` bash
 dune init --help
