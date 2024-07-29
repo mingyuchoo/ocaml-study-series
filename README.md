@@ -25,6 +25,7 @@ ocaml -version
 
 ```bash
 opam install dune ocaml-lsp-server odoc ocamlformat utop
+opam install menhir mirage
 ```
 
 ### Initialize a project
