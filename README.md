@@ -30,6 +30,7 @@ opam install menhir mirage
 
 * dune: OCaml 프로젝트의 빌드 시스템입니다.
 * menhir: OCaml에서 사용하는 파서 생성기입니다.
+* merlin: OCaml 코드에 대한 강력한 편집기 지원을 제공하는 도구입니다. 
 * mirage: OCaml을 기반으로 하는 unikernel 시스템입니다.
 * ocaml-lsp-server: OCaml 언어 서버 프로토콜(LSP) 서버입니다.
 * ocamlformat: OCaml 코드의 자동 코드 포매터입니다.
