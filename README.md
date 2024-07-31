@@ -28,19 +28,19 @@ opam install dune ocaml-lsp-server odoc ocamlformat utop
 opam install menhir mirage
 ```
 
-* dune: OCaml 프로젝트의 빌드 시스템입니다.
-* menhir: OCaml에서 사용하는 파서 생성기입니다.
-* merlin: OCaml 코드에 대한 강력한 편집기 지원을 제공하는 도구입니다. 
-* mirage: OCaml을 기반으로 하는 unikernel 시스템입니다.
-* ocaml-lsp-server: OCaml 언어 서버 프로토콜(LSP) 서버입니다.
-* ocamlformat: OCaml 코드의 자동 코드 포매터입니다.
-* odoc: OCaml 코드의 문서를 생성하는 도구입니다.
-* opam: OCaml 패키지 관리자입니다.
-* utop: OCaml의 상호작용적 최상위(top-level) 인터프리터입니다.
+- dune: OCaml 프로젝트의 빌드 시스템입니다.
+- menhir: OCaml에서 사용하는 파서 생성기입니다.
+- merlin: OCaml 코드에 대한 강력한 편집기 지원을 제공하는 도구입니다.
+- mirage: OCaml을 기반으로 하는 unikernel 시스템입니다.
+- ocaml-lsp-server: OCaml 언어 서버 프로토콜(LSP) 서버입니다.
+- ocamlformat: OCaml 코드의 자동 코드 포매터입니다.
+- odoc: OCaml 코드의 문서를 생성하는 도구입니다.
+- opam: OCaml 패키지 관리자입니다.
+- utop: OCaml의 상호작용적 최상위(top-level) 인터프리터입니다.
 
 ### Initialize a project
 
-``` bash
+```bash
 dune init --help
 ```
 
@@ -56,7 +56,7 @@ dune exec <project_name>
 
 #### From initializing to testing a Library
 
-``` bash
+```bash
 dune init project --kind=lib <project_name>
 cd <project_name>/
 dune build
@@ -65,10 +65,20 @@ dune test
 
 ## Install the OCaml language server
 
-``` bash
+```bash
 opam install ocaml-lsp-server
 opam install merlin # for VIM and Emacs
 ```
+
+## Formatting code with OCamlFormat
+
+Create a `.ocamlformat` configuration file at the root of the project.
+
+```bash
+echo "version = `ocamlformat --version`" > .ocamlformat
+opam exec -- dune fmt
+```
+
 ## Applications written in Ocaml
 
 - <http://ocamlverse.net/content/apps.html>
@@ -76,6 +86,4 @@ opam install merlin # for VIM and Emacs
 
 ## References
 
--<https://ocaml.org/docs/install.html>
--<https://opam.ocaml.org/>
--<https://dune.readthedocs.io/en/latest/quick-start.html>
+-<https://ocaml.org/docs/install.html> -<https://opam.ocaml.org/> -<https://dune.readthedocs.io/en/latest/quick-start.html>
