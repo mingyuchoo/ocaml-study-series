@@ -41,26 +41,26 @@ opam install menhir mirage
 ### Initialize a project
 
 ```bash
-dune init --help
+opam exec -- dune init --help
 ```
 
 #### From initializing to executing an executable
 
 ```bash
-dune init project <project_name>
+opam exec -- dune init project <project_name>
 cd <project_name>/
-dune build
-dune test
-dune exec <project_name>
+opam exec -- dune build
+opam exec -- dune test
+opam exec -- dune exec <project_name>
 ```
 
 #### From initializing to testing a Library
 
 ```bash
-dune init project --kind=lib <project_name>
+opam exec -- dune init project --kind=lib <project_name>
 cd <project_name>/
-dune build
-dune test
+opam exec -- dune build
+opam exec -- dune test
 ```
 
 ## Install the OCaml language server
@@ -86,4 +86,6 @@ opam exec -- dune fmt
 
 ## References
 
--<https://ocaml.org/docs/install.html> -<https://opam.ocaml.org/> -<https://dune.readthedocs.io/en/latest/quick-start.html>
+- <https://ocaml.org/docs/install.html>
+- <https://opam.ocaml.org/>
+- <https://dune.readthedocs.io/en/latest/quick-start.html>
