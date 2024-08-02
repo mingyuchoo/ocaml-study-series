@@ -7,21 +7,22 @@ let print_dict_entry (k, v) =
 
 let rec print_dict d =
   match d with
-    [] -> ()
+  | []   -> ()
   | h::t -> print_dict_entry h; print_dict t
 
 
 let rec iter' f l =
   match l with
-    [] -> ()
+  | []   -> ()
   | h::t -> f h; iter' f t
 
 
 let rec read_dict () =
   let i = read_int () in
-    if i = 0 then [] else
-      let name = read_line () in
-        (i, name) :: read_dict ()
+    if i = 0
+    then []
+    else let name = read_line () in
+         (i, name) :: read_dict ()
 
 let entry_to_channel ch (k, v) =
   output_string ch (string_of_int k);

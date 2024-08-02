@@ -2,13 +2,10 @@
 
 type stats = int * int * int * int
 
-let lines (l, _, _, _) = l
-
+let lines (l, _, _, _)      = l
 let characters (_, c, _, _) = c
-
-let words (_, _, w, _) = w
-
-let sentences (_, _, _, s) = s
+let words (_, _, w, _)      = w
+let sentences (_, _, _, s)  = s
 
 let stats_from_channel in_channel =
   let lines = ref 0 in
@@ -23,9 +20,9 @@ let stats_from_channel in_channel =
       String.iter
         ( fun c ->
             match c with
-              '.' | '?' | '!' -> sentences := ! sentences + 1
-            | ' ' -> words := !words + 1
-            | _ -> ())
+            | '.' | '?' | '!' -> sentences := ! sentences + 1
+            | ' '             -> words := !words + 1
+            | _               -> ())
         line
     done;
     (0, 0, 0, 0)

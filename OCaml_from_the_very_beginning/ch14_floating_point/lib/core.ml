@@ -9,6 +9,8 @@ let offset_point (x, y) (px, py) =
 
 let scale_to_length l (a, b) =
   let currentlength = vector_length (a, b) in
-  if currentlength = 0. then (a, b) else
+  if currentlength = 0.
+  then (a, b)
+  else
     let factor = l /. currentlength in
     (a *. factor, b *. factor)
