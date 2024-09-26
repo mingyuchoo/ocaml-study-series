@@ -1,5 +1,4 @@
-type 'a tree = Br of 'a * 'a tree * 'a tree
-             | Lf
+type 'a tree = Br of 'a * 'a tree * 'a tree | Lf
 
 val size : 'a tree -> int
 

@@ -3,9 +3,7 @@ let rec factorial a =
   | 1 -> 1
   | _ -> a * factorial (a - 1)
 in
-let () =
-  print_int(factorial 4)
-in
+let () = print_int (factorial 4) in
 print_newline ()
 ;;
 
@@ -14,7 +12,7 @@ let isvowel c =
   | 'a' | 'e' | 'i' | 'o' | 'u' -> true
   | _ -> false
 in
-print_endline(if isvowel 'a' = true then "true" else "false")
+print_endline (if isvowel 'a' = true then "true" else "false")
 ;;
 
 let rec gcd a b =
@@ -22,5 +20,4 @@ let rec gcd a b =
   | 0 -> a
   | _ -> gcd b (a mod b)
 in
-print_int(gcd 100 10)
-;;
+print_int (gcd 100 10)

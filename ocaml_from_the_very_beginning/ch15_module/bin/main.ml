@@ -2,9 +2,8 @@ open Lib
 
 let () =
   try
-    begin
-      match Sys.argv with
-      | [|_; filename|] ->
+    match Sys.argv with
+    | [|_; filename|] ->
         let stats = Core.stats_from_file filename in
         print_string "Words: ";
         print_int (Core.words stats);
@@ -18,13 +17,10 @@ let () =
         print_string "Lines ";
         print_int (Core.lines stats);
         print_newline ()
-
-      | _ ->
+    | _ ->
         print_string "Usage: stats <filename>";
         print_newline ()
-    end
-  with
-    e ->
+  with e ->
     print_string "An error occurred: ";
     print_string (Printexc.to_string e);
     print_newline ();

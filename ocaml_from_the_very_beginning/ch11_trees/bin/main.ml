@@ -1,5 +1,3 @@
-(*
-open Lib
-*)
+(* open Lib *)
 
 let () = print_endline "Hello"

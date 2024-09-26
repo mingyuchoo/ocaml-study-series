@@ -1,4 +1,4 @@
-(* Text statistics  *)
+(* Text statistics *)
 
 type stats = int * int * int * int
 
