@@ -1,1 +1,7 @@
-version = 0.26.2
+break-cases = fit
+line-endings = lf
+margin = 77
+profile = ocamlformat
+version = ignore
+version-check = false
+wrap-comments = true
