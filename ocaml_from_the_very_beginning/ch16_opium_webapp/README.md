@@ -10,6 +10,7 @@ dune init proj ch16_opium_webapp --libs opium
 ## How to build, test, and run
 
 ```bash
+opam install --deps-only .
 dune build
 dune test
 dune exec $(basename ${PWD})
