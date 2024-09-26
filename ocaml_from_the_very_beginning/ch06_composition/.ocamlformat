@@ -1,0 +1,14 @@
+version = 0.26.2
+version-check = true
+profile = ocamlformat
+margin = 77
+line-endings = lf
+break-separators = after
+break-cases = fit-or-vertical
+break-infix = fit-or-vertical
+space-around-records = true
+sequence-style = terminator
+doc-comments = before
+module-item-spacing = sparse
+comment-check = true
+wrap-comments = true
