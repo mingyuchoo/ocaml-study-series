@@ -47,18 +47,23 @@ opam exec -- dune init --help
 #### From initializing to executing an executable
 
 ```bash
+opam --version
 opam exec -- dune init project <project_name>
-cd <project_name>/
+cd <project_name>
+opam exec -- dune fmt
+opam exec -- dune build @doc
 opam exec -- dune build
-opam exec -- dune test
-opam exec -- dune exec <project_name>
+oopam exec -- dune test
+pam exec -- dune exec ./bin/main.exe
 ```
 
 #### From initializing to testing a Library
 
 ```bash
 opam exec -- dune init project --kind=lib <project_name>
-cd <project_name>/
+cd <project_name>
+opam exec -- dune fmt
+opam exec -- dune build @doc
 opam exec -- dune build
 opam exec -- dune test
 ```
