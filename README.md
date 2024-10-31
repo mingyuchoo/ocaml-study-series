@@ -79,6 +79,38 @@ echo "version = `ocamlformat --version`" > .ocamlformat
 opam exec -- dune fmt
 ```
 
+## How to use Ocaml as a kernel on Jupyter Notebook
+
+### on Ubuntu
+
+Install some packages
+
+```bash
+sudo apt-get install -y zlib1g-dev libffi-dev libgmp-dev libzmq5-dev
+opam install jupyter
+```
+
+Create a file `~/.ocamlinit`
+
+```ocaml
+#use "topfind";;
+Topfind.log:=ignore;;
+```
+
+Install Ocaml kernel in Jupyter
+
+```bash
+ocaml-jupyter-opam-genspec
+jupyter kernelspec install --user --name ocaml-jupyter "$(opam var share)/jupyter"
+```
+
+Run Jupyter Notebook and choose OCaml as a kernel
+
+```bash
+jupyter notebook
+```
+
+
 ## Applications written in Ocaml
 
 - <http://ocamlverse.net/content/apps.html>
