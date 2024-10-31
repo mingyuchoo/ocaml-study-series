@@ -50,7 +50,7 @@ opam exec -- dune init --help
 opam --version
 opam exec -- dune init project <project_name>
 cd <project_name>
-opam exec -- dune fmt
+opam exec -- dune build @fmt
 opam exec -- dune build @doc
 opam exec -- dune build
 oopam exec -- dune test
@@ -62,7 +62,7 @@ pam exec -- dune exec ./bin/main.exe
 ```bash
 opam exec -- dune init project --kind=lib <project_name>
 cd <project_name>
-opam exec -- dune fmt
+opam exec -- dune build @fmt
 opam exec -- dune build @doc
 opam exec -- dune build
 opam exec -- dune test
@@ -81,7 +81,7 @@ Create a `.ocamlformat` configuration file at the root of the project.
 
 ```bash
 echo "version = `ocamlformat --version`" > .ocamlformat
-opam exec -- dune fmt
+opam exec -- dune build @fmt
 ```
 
 ## How to use Ocaml as a kernel on Jupyter Notebook
