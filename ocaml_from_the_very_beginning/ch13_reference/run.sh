@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
 
-dune build
-dune exe $(basename $PWD)
+opam exec -- dune clean
+opam exec -- dune build @fmt
+opam exec -- dune build @doc
+opam exec -- dune build
+opam exec -- dune test
+opam exec -- dune exec $(basename ${PWD})
