@@ -18,5 +18,5 @@ opam exec -- dune build @fmt
 opam exec -- dune build @doc
 opam exec -- dune build
 opam exec -- dune test
-opam exec -- dune exec ./bin/main.exe
+opam exec -- dune exec $(basename ${PWD})
 ```
