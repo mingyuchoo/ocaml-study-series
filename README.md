@@ -50,11 +50,12 @@ opam exec -- dune init --help
 opam --version
 opam exec -- dune init project <project_name>
 cd <project_name>
+opam exec -- dune clean
 opam exec -- dune build @fmt
 opam exec -- dune build @doc
 opam exec -- dune build
-oopam exec -- dune test
-pam exec -- dune exec ./bin/main.exe
+opam exec -- dune test
+opam exec -- dune exec ./bin/main.exe
 ```
 
 #### From initializing to testing a Library
@@ -62,6 +63,7 @@ pam exec -- dune exec ./bin/main.exe
 ```bash
 opam exec -- dune init project --kind=lib <project_name>
 cd <project_name>
+opam exec -- dune clean
 opam exec -- dune build @fmt
 opam exec -- dune build @doc
 opam exec -- dune build
