@@ -48,8 +48,8 @@ opam exec -- dune init --help
 
 ```bash
 opam --version
-opam exec -- dune init project <project_name>
-cd <project_name>
+opam exec -- dune init project {project_name}
+cd {project_name}
 opam exec -- dune clean
 opam exec -- dune build @fmt
 opam exec -- dune build @doc
@@ -61,8 +61,8 @@ opam exec -- dune exec $(basename ${PWD})
 #### From initializing to testing a Library
 
 ```bash
-opam exec -- dune init project --kind=lib <project_name>
-cd <project_name>
+opam exec -- dune init project --kind=lib {project_name}
+cd {project_name}
 opam exec -- dune clean
 opam exec -- dune build @fmt
 opam exec -- dune build @doc

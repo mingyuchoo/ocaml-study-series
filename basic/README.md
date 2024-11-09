@@ -12,8 +12,8 @@ opam install ocaml-lsp-server odoc ocamlformat utop
 
 ```bash
 opam --version
-opam exec -- dune init project <project_name>
-cd <project_name>
+opam exec -- dune init project {project_name}
+cd {project_name}
 opam exec -- dune build @fmt
 opam exec -- dune build @doc
 opam exec -- dune build
