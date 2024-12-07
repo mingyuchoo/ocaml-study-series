@@ -1,0 +1,46 @@
+* README
+** Installation
+*** OCaml Package Manager
+#+begin_src shell
+  bash -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)"
+  opam init -y
+  eval $(opam env)
+  which ocaml
+  ocaml -version
+#+end_src
+*** Build system
+#+begin_src shell
+  opam install dune ocaml-lsp-server odoc ocamlformat utop
+  opam install merlin menhir mirage
+#+end_src
+*** Reason
+#+begin_src shell
+  opam install reason
+#+end_src
+you will have available the follwoing tools
+- ~refmt~
+- ~rtop~
+** Create a first project
+#+begin_src shell
+  opam exec -- dune init project {project_name}
+  cd {project_name}
+#+end_src
+*** Change file to reason extension
+#+begin_src shell
+  mv bin/main.ml bin/main.re
+#+end_src
+*** Change content of ~main.re~
+#+begin_src reason
+  print_endline("Hello world!");
+#+end_src
+*** Build
+#+begin_src shell
+  opam exec -- dune clean
+  opam exec -- dune build @fmt
+  opam exec -- dune build @doc
+  opam exec -- dune build
+  opam exec -- dune test
+  opam exec -- dune exec $(basename ${PWD})
+#+end_src
+** References
+- [[https://reasonml.github.io/en/][REASON]]
