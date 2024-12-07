@@ -1,0 +1,38 @@
+* README
+** Project setting
+*** Install essential tools
+Install OCaml with =opam=
+#+begin_src shell
+  opam install ocaml dune
+#+end_src
+Install =Dream= package
+#+begin_src shell
+  opam install dream
+#+end_src
+*** Create a project
+#+begin_src shell
+  opam exec dune init project {project_name}
+#+end_src
+*** Add =Dream= package to =bin/dune= file
+#+begin_src ocaml
+  (executable
+    (public_name {project_name})
+    (name main)
+    (libraries {project_name} dream))
+#+end_src
+** Write code to =main.ml= file
+#+begin_src ocaml
+  let () =
+    Dream.run(fun _ ->
+      Dream.html "Good morning, world!")
+#+end_src
+** Run project
+*** Build and execute
+#+begin_src shell
+  opam install --deps-only --yes .
+  opam exec -- dune exec $(basename ${PWD})
+#+end_src
+** Check the functionalities
+If you go to [[http://localhost:8080]], You can csee =Good moring, world!=
+** References
+- [[https://github.com/aantron/dream/tree/master/example][Dream Examples]]
