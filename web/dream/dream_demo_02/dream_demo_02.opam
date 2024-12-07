@@ -10,6 +10,7 @@ homepage: "https://github.com/username/reponame"
 doc: "https://url/to/documentation"
 bug-reports: "https://github.com/username/reponame/issues"
 depends: [
+  "caqti-driver-sqlite3" {>= "2.1.1"}
   "ocaml"
   "dune" {>= "3.16"}
   "dream"
