@@ -83,15 +83,11 @@ let () =
   @@ Dream.memory_sessions
   @@ count_requests
   @@ Dream.router [
-    Dream.get "/"
-      (fun request -> Dream.html (show_form request));
-    Dream.post "/"
-      (fun request ->
-        match%lwt Dream.form request with
+    Dream.get "/" (fun request -> Dream.html (show_form request));
+    Dream.post "/" (fun request -> match%lwt Dream.form request with
         | `Ok ["message", message] -> Dream.html (show_form ~message request)
         | _ -> Dream.empty `Bad_Request);
-    Dream.post "/json"
-      (fun request ->
+    Dream.post "/json" (fun request ->
         let%lwt body = Dream.body request in
         let message_object = 
           body
@@ -101,31 +97,22 @@ let () =
         `String message_object.message
         |> Yojson.Safe.to_string
         |> Dream.json);
-    Dream.get "/counter"
-      (fun _request ->
+    Dream.get "/counter" (fun _request ->
         Dream.html (Printf.sprintf "%3i request(s) successful<br>%3i request(s) failed" !successful !failed));
-    Dream.get "/echo/:word"
-      (fun request ->
+    Dream.get "/echo/:word" (fun request ->
         Dream.html (Dream.param request "word"));
-    Dream.get "/url/:word"
-      (fun request ->
+    Dream.get "/url/:word" (fun request ->
         Dream.param request "word" |> render |> Dream.html);
-    Dream.get "/status/fail"
-      (fun _request -> 
+    Dream.get "/status/fail" (fun _request -> 
         Dream.warning (fun log -> log "Raising an exception!");
         raise (Failure "The Web app failed!"));
-    Dream.post "/echo"
-      (fun request ->
+    Dream.post "/echo" (fun request ->
         let%lwt body = Dream.body request in
-        Dream.respond
-          ~headers:["Content-Type", "application/octet-stream"]
-          body);
+        Dream.respond ~headers:["Content-Type", "application/octet-stream"] body);
     Dream.get "/static/**" (Dream.static "./public");
-    Dream.get "/upload"
-      (fun request ->
+    Dream.get "/upload" (fun request ->
         Dream.html (home request));
-    Dream.post "/upload"
-      (fun request ->
+    Dream.post "/upload" (fun request ->
         match%lwt Dream.multipart request with
         | `Ok ["files", files] -> Dream.html (report files)
         | _ -> Dream.empty `Bad_Request);
