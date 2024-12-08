@@ -6,6 +6,7 @@ line-endings = lf
 break-separators = after
 break-cases = fit-or-vertical
 break-infix = fit-or-vertical
+exp-grouping = parens
 space-around-records = true
 sequence-style = terminator
 doc-comments = before
