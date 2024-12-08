@@ -1,4 +1,4 @@
 (library
- (name hello)
+ (name hello_02)
  (preprocess
   (pps ppx_deriving.show)))

@@ -1,0 +1,6 @@
+* README
+** Overview
+This codebase was written with reference to *Your First OCaml Program*.
+** Reference
+- [[https://ocaml.org/docs/tour-of-ocaml][A Tour of OCaml]]
+- [[https://ocaml.org/docs/your-first-program][Your First OCaml Program]]
