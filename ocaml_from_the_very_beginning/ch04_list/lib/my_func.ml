@@ -25,7 +25,7 @@ let is_nil = function
 
 let rec length = function
   | [] -> 0
-  | _ :: t -> 1 + length t
+  | _ :: tail -> 1 + length tail
 
 (*
  * let rec sum l =
@@ -40,7 +40,7 @@ let rec length = function
  *)
 let rec sum = function
   | [] -> 0
-  | h :: t -> h + sum t
+  | head :: tail -> head + sum tail
 
 (*
  * let rec length_inner l n =
@@ -55,6 +55,14 @@ let rec sum = function
  *
  *)
 
+let length_inner list =
+  (* auxiliary function; 보조함수 *)
+  let rec aux acc = function
+    | [] -> acc
+    | _ :: tail -> aux (acc + 1) tail
+  in
+  aux 0 list
+
 (*
  * let rec odd_elements l =
  *   match l with
@@ -62,13 +70,18 @@ let rec sum = function
  *   | [a] -> [a]
  *   | a :: _ :: t -> a :: odd_elements t
  * ;;
- * 
- *)
-
-(*
+ *
  * let () = List.iter (printf "%d ") (odd_elements [1; 2; 3; 4; 5]) in
  * print_newline ()
- * 
+ *)
+
+let rec odd_elements list =
+  match list with
+  | [] -> []
+  | [head] -> [head]
+  | head :: _ :: tail -> head :: odd_elements tail
+
+(*
  * let rec append a b =
  *   match a with
  *   | [] -> b
@@ -76,6 +89,11 @@ let rec sum = function
  * ;;
  * 
  *)
+
+let rec append x1 x2 =
+  match x1 with
+  | [] -> x2
+  | head :: tail -> head :: append tail x2
 
 (*
  * let () = List.iter (printf "%d ") (append [1; 2; 3; 4; 5] [6; 7; 8; 9]) in
