@@ -24,6 +24,9 @@ build:
 test:
 	opam exec -- dune test
 
+utop:
+	opam exec -- dune utop
+
 watch:
 	opam exec -- dune exec --watch "$(CURRENT_DIR)"
 
