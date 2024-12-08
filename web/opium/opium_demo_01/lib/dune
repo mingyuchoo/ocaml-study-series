@@ -1,0 +1,3 @@
+(library
+ (name opium_demo_01)
+ (libraries opium))

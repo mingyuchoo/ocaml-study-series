@@ -1,0 +1,28 @@
+* README
+** How to create a project
+#+begin_src shell
+  opam exec -- dune init project {project_name} --lib opium
+  cd {project_name}
+#+end_src
+** How to run server
+#+begin_src shell
+  make run
+#+end_src
+** How to connect to server
+#+begin_src shell
+  curl http://localhost:3000/person/john_doe/42
+#+end_src
+** Fix Opium Errors
+If you encounter the error below,
+#+begin_quote
+  Response.of_plain_text "Hello World" |> Lwt.return
+  ^^^^^^^^^^^^^^^^^^^^^^
+  Error: Unbound module Response
+  make: *** [Makefile:31: run] Error 1
+#+end_quote
+upgrade you opium package
+#+begin_src shell
+  opam upgrade opium
+#+end_src
+** References
+- [[https://github.com/rgrinberg/opium/tree/master?tab=readme-ov-file][Opium]]

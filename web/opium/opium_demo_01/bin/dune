@@ -1,0 +1,4 @@
+(executable
+ (public_name opium_demo_01)
+ (name main)
+ (libraries opium_demo_01 opium))
