@@ -1,8 +1,8 @@
 (*
 (* STEP 1 - At the beginning *)
+*)
 let () =
   Dream.run (fun _ -> Dream.html "Good morning, world!")
-*)
 
 (*
 (* STEP 2 - Middleware *)
@@ -99,7 +99,6 @@ let () =
 
 (*
 (* STEP 9 - Debug *)
-*)
 let () =
   Dream.run ~error_handler:Dream.debug_error_handler
   @@ Dream.logger
@@ -107,6 +106,7 @@ let () =
     Dream.get "/bad" (fun _ -> Dream.empty `Bad_Request);
     Dream.get "/fail" (fun _ -> raise (Failure "The Web app failed!"));
   ]
+*)
 
 (*
 (* STEP *)
