@@ -1,6 +1,6 @@
 * README
 ** How to create a OCaml project
-#+begin_src shell
+#+BEGIN_SRC shell
   opam exec -- dune init project <project_name>
   cd <project_name>
   # Edit source files
@@ -10,4 +10,4 @@
   opam exec -- dune build
   opam exec -- dune test
   opam exec -- dune exec $(basename ${PWD})
-#+end_src
+#+END_SRC

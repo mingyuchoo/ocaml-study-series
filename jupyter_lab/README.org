@@ -1,21 +1,21 @@
 * How to use Ocaml as a kernel on Jupyter Notebook
 ** on Ubuntu
 Install some packages
-#+begin_src shell
+#+BEGIN_SRC shell
   sudo apt-get install -y zlib1g-dev libffi-dev libgmp-dev libzmq5-dev
   opam install jupyter
-#+end_src
+#+END_SRC
 Create a file `~/.ocamlinit`
-#+begin_src ocaml
+#+BEGIN_SRC ocaml
   #use "topfind";;
   Topfind.log:=ignore;;
-#+end_src
+#+END_SRC
 Install Ocaml kernel in Jupyter
-#+begin_src shell
+#+BEGIN_SRC shell
   ocaml-jupyter-opam-genspec
   jupyter kernelspec install --user --name ocaml-jupyter "$(opam var share)/jupyter"
-#+end_src
+#+END_SRC
 Run Jupyter Notebook and choose OCaml as a kernel
-#+begin_src shell
+#+BEGIN_SRC shell
   jupyter notebook
-#+end_src
+#+END_SRC

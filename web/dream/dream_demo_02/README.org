@@ -2,36 +2,36 @@
 ** Project setting
 *** Install essential tools
 Install OCaml with =opam=
-#+begin_src shell
+#+BEGIN_SRC shell
   opam install ocaml dune
-#+end_src
+#+END_SRC
 Install =Dream= package
-#+begin_src shell
+#+BEGIN_SRC shell
   opam install dream
-#+end_src
+#+END_SRC
 *** Create a project
-#+begin_src shell
+#+BEGIN_SRC shell
   opam exec dune init project {project_name}
-#+end_src
+#+END_SRC
 *** Add =Dream= package to =bin/dune= file
-#+begin_src ocaml
+#+BEGIN_SRC ocaml
   (executable
     (public_name {project_name})
     (name main)
     (libraries {project_name} dream))
-#+end_src
+#+END_SRC
 ** Write code to =main.ml= file
-#+begin_src ocaml
+#+BEGIN_SRC ocaml
   let () =
     Dream.run(fun _ ->
       Dream.html "Good morning, world!")
-#+end_src
+#+END_SRC
 ** Run project
 *** Build and execute
-#+begin_src shell
+#+BEGIN_SRC shell
   opam install --deps-only --yes .
   opam exec -- dune exec $(basename ${PWD})
-#+end_src
+#+END_SRC
 ** Check the functionalities
 If you go to [[http://localhost:8080]], You can csee =Good moring, world!=
 ** References
