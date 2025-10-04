@@ -33,6 +33,6 @@ Install =Dream= package
   opam exec -- dune exec $(basename ${PWD})
 #+END_SRC
 ** Check the functionalities
-If you go to [[http://localhost:8080]], You can csee =Good moring, world!=
+If you go to [[http://localhost:8000]], You can csee =Good moring, world!=
 ** References
 - [[https://github.com/aantron/dream/tree/master/example][Dream Examples]]
