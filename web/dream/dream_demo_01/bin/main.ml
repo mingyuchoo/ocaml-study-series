@@ -80,7 +80,7 @@ let () =
 (*
 (* STEP 7 - Echo *)
 (* Add ~(preprocess (pps lwt_ppx))~ to =/bin/dune= file *)
-(* Check with ~curl http://localhost:8000/echo -- data foo~ *)
+(* Check with ~curl http://localhost:8080/echo -- data foo~ *)
 let () =
   Dream.run
   @@ Dream.logger

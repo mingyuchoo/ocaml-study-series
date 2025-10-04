@@ -1,4 +1,4 @@
-(lang dune 3.16)
+(lang dune 3.17)
 
 (name dream_demo_02)
 
@@ -19,7 +19,13 @@
  (name dream_demo_02)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml dune dream)
+ (depends 
+  ocaml 
+  (dune (>= 3.17))
+  (dream (>= 1.0.0~alpha7))
+  (caqti-driver-sqlite3 (>= 2.1.2))
+  (lwt_ppx (>= 2.1.0))
+  (ppx_yojson_conv (>= 0.17.0)))
  (tags
   (topics "to describe" your project)))
 

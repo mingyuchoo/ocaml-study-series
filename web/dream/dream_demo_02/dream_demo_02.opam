@@ -10,10 +10,12 @@ homepage: "https://github.com/username/reponame"
 doc: "https://url/to/documentation"
 bug-reports: "https://github.com/username/reponame/issues"
 depends: [
-  "caqti-driver-sqlite3" {>= "2.1.1"}
   "ocaml"
-  "dune" {>= "3.16"}
-  "dream"
+  "dune" {>= "3.17" & >= "3.17"}
+  "dream" {>= "1.0.0~alpha7"}
+  "caqti-driver-sqlite3" {>= "2.1.2"}
+  "lwt_ppx" {>= "2.1.0"}
+  "ppx_yojson_conv" {>= "0.17.0"}
   "odoc" {with-doc}
 ]
 build: [
