@@ -19,7 +19,10 @@
  (name hello_02)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml)
+ (depends
+  ocaml
+  sexplib
+  ppx_deriving)
  (tags
   ("add topics" "to describe" your project)))
 
