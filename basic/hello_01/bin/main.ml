@@ -1,1 +1,1 @@
-let () = print_endline "Hello, World!"
+let () = Hello_01.run ()
