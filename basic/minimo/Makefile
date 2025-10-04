@@ -5,8 +5,8 @@ CURRENT_DIR := $(notdir $(CURDIR))
 all: clean format doc build test run
 
 install:
-	#opam update
-	#opam upgrade
+	opam update
+	opam upgrade
 	opam install dream
 
 clean:
