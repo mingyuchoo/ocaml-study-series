@@ -1,4 +1,4 @@
-(lang dune 3.20.2)
+(lang dune 3.20)
 
 (name opium_demo_01)
 
