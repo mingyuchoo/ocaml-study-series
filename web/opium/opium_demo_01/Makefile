@@ -25,7 +25,7 @@ build:
 	opam exec -- dune build
 
 test:
-	opam exec -- dune test
+	opam exec -- dune runtest -f
 
 utop:
 	opam exec -- dune utop
