@@ -8,4 +8,5 @@ let run () =
   |> App.get "/hello/:name" Handlers.print_param_handler
   |> App.get "/person/:name/:age" Handlers.print_person_handler
   |> App.patch "/person" Handlers.update_person_handler
+  |> App.port 8080
   |> App.run_command

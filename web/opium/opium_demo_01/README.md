@@ -16,7 +16,7 @@ make run
 ## How to connect to server
 
 ```shell
-curl http://localhost:3000/person/john_doe/42
+curl http://localhost:8080/person/john_doe/42
 ```
 
 ## Fix Opium Errors
