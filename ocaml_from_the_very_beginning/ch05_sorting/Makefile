@@ -13,7 +13,7 @@ clean:
 	opam exec -- dune clean
 
 format:
-	opam exec -- dune build @fmt
+	opam exec -- dune build @fmt --auto-promote
 
 doc:
 	opam exec -- dune build @doc

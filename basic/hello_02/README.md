@@ -71,7 +71,7 @@ opam install -y sexplib ppx_deriving
 - 포매팅/문서
 
   ```bash
-  dune build @fmt   # 또는 make format
+  dune build @fmt --auto-promote   # 또는 make format
   dune build @doc   # 또는 make doc
   ```
 

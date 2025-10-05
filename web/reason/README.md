@@ -52,7 +52,7 @@ print_endline("Hello world!");
 
 ```shell
 opam exec -- dune clean
-opam exec -- dune build @fmt
+opam exec -- dune build @fmt --auto-promote
 opam exec -- dune build @doc
 opam exec -- dune build
 opam exec -- dune runtest -f
