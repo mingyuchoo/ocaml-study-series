@@ -23,7 +23,7 @@ curl http://localhost:3000/person/john_doe/42
 
 If you encounter the error below,
 
-```
+```shell
 Response.of_plain_text "Hello World" |> Lwt.return
 ^^^^^^^^^^^^^^^^^^^^^^
 Error: Unbound module Response

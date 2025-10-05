@@ -19,7 +19,7 @@
  (name opium_demo_01)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml)
+ (depends ocaml opium yojson logs (alcotest :with-test))
  (tags
   ("add topics" "to describe" your project)))
 
