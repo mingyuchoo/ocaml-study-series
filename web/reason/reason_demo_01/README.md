@@ -1,64 +1,105 @@
-# README
+# Reason Demo 01
 
-## Installation
+A Reason project demonstrating module functors and type signatures.
 
-### OCaml Package Manager
+## Prerequisites
+
+Make sure you have OCaml and Reason installed:
 
 ```shell
+# Install OCaml package manager
 bash -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)"
 opam init -y
 eval $(opam env)
-which ocaml
-ocaml -version
+
+# Install build tools and Reason
+opam install dune ocaml-lsp-server odoc ocamlformat utop reason
 ```
 
-### Build system
+## Project Structure
+
+```
+├── bin/
+│   ├── dune          # Executable configuration
+│   └── main.re       # Main Reason source file
+├── lib/
+│   └── dune          # Library configuration
+├── test/
+│   ├── dune          # Test configuration
+│   └── test_reason_demo_01.ml
+├── dune-project      # Project configuration
+└── Makefile          # Build automation
+```
+
+## Development
+
+### Quick Start
 
 ```shell
-opam install dune ocaml-lsp-server odoc ocamlformat utop
-opam install merlin menhir mirage
+# Install dependencies
+make install
+
+# Build and run
+make run
 ```
 
-### Reason
+### Available Commands
 
 ```shell
-opam install reason
+# Clean build artifacts
+make clean
+
+# Format code
+make format
+
+# Build documentation
+make doc
+
+# Build project
+make build
+
+# Run tests
+make test
+
+# Start utop REPL
+make utop
+
+# Run with file watching
+make watch
 ```
 
-You will have available the following tools:
-- `refmt`
-- `rtop`
-
-## Create a first project
+### Manual Commands
 
 ```shell
-opam exec -- dune init project {project_name}
-cd {project_name}
-```
-
-### Change file to reason extension
-
-```shell
-mv bin/main.ml bin/main.re
-```
-
-### Change content of `main.re`
-
-```reason
-print_endline("Hello world!");
-```
-
-### Build
-
-```shell
+# Clean
 opam exec -- dune clean
+
+# Format code
 opam exec -- dune build @fmt --auto-promote
+
+# Build documentation
 opam exec -- dune build @doc
+
+# Build project
 opam exec -- dune build
+
+# Run tests
 opam exec -- dune runtest -f
-opam exec -- dune exec $(basename ${PWD})
+
+# Execute
+opam exec -- dune exec reason_demo_01
 ```
+
+## What This Demo Shows
+
+The main.re file demonstrates:
+- Module type definitions (`Stringable`)
+- Functors (modules that take other modules as parameters)
+- Module instantiation with specific types
+- List processing and string operations
 
 ## References
 
-- [REASON](https://reasonml.github.io/en/)
+- [Reason Language](https://reasonml.github.io/en/)
+- [Dune Build System](https://dune.readthedocs.io/)
+- [OCaml Documentation](https://ocaml.org/docs/)
