@@ -5,6 +5,8 @@
 ```shell
 opam exec -- dune init project {project_name} --lib opium
 cd {project_name}
+opam install opium yojson logs alcotest
+opam install . --deps-only
 ```
 
 ## How to run server
@@ -16,7 +18,7 @@ make run
 ## How to connect to server
 
 ```shell
-curl http://localhost:8080/person/john_doe/42
+curl http://localhost:8000/person/john_doe/42
 ```
 
 ## Fix Opium Errors
