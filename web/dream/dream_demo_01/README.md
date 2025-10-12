@@ -1,51 +1,83 @@
-# README
+# Dream Demo 01
 
-## Project setting
+OCaml Dream web framework demonstration project.
 
-### Install essential tools
+## Project Setup
 
-Install OCaml with `opam`
+### Install Essential Tools
+
+Install OCaml with `opam`:
 ```shell
 opam install ocaml dune
 ```
 
-Install `Dream` package
+Install `Dream` and other required packages:
 ```shell
-opam install dream
+opam install dream lwt_ppx
 ```
 
-### Create a project
+### Project Structure
+
+This project was created using:
 ```shell
-opam exec dune init project {project_name}
+opam exec dune init project dream_demo_01
 ```
 
-### Add `Dream` package to `bin/dune` file
+The project includes:
+- `bin/main.ml` - Main application entry point
+- `bin/dune` - Executable configuration with Dream and lwt_ppx dependencies
+- `lib/dune` - Library configuration
+- `dune-project` - Project configuration
+- `dream_demo_01.opam` - Package dependencies (auto-generated)
+
+### Dependencies Configuration
+
+The `bin/dune` file is configured with:
 ```ocaml
 (executable
-  (public_name {project_name})
-  (name main)
-  (libraries {project_name} dream))
+ (public_name dream_demo_01)
+ (name main)
+ (libraries dream_demo_01 dream)
+ (preprocess
+  (pps lwt_ppx)))
 ```
 
-## Write code to `main.ml` file
+## Application Code
+
+The main application in `bin/main.ml`:
 ```ocaml
-let () =
-  Dream.run(fun _ ->
-    Dream.html "Good morning, world!")
+let () = Dream.run (fun _ -> Dream.html "Good morning, world!")
 ```
 
-## Run project
+## Running the Project
 
-### Build and execute
+### Install Dependencies and Build
 ```shell
 opam install --deps-only --yes .
-opam exec -- dune exec $(basename ${PWD})
 ```
 
-## Check the functionalities
+### Execute the Application
+```shell
+opam exec -- dune exec dream_demo_01
+```
 
-If you go to [http://localhost:8080](http://localhost:8080), You can see `Good morning, world!`
+## Testing the Application
+
+Visit [http://localhost:8080](http://localhost:8080) to see "Good morning, world!" displayed in your browser.
+
+## Development Notes
+
+The `main.ml` file contains multiple commented examples showing different Dream features:
+- Basic routing
+- Middleware usage
+- Request counting
+- Promise handling with lwt_ppx
+- Error handling
+- Echo server functionality
+
+Uncomment different sections to explore various Dream capabilities.
 
 ## References
 
 - [Dream Examples](https://github.com/aantron/dream/tree/master/example)
+- [Dream Documentation](https://aantron.github.io/dream/)

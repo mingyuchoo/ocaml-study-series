@@ -9,9 +9,10 @@ Install OCaml with `opam`
 opam install ocaml dune
 ```
 
-Install `Dream` package
+Install `Dream` and other packages
 ```shell
 opam install dream
+opam install caqti-driver-sqlite3 ppx_yojson_conv
 ```
 
 ### Create a project

@@ -30,3 +30,6 @@ _opam/
 
 # Jupyter Notebook
 .ipynb_checkpoints/
+
+# IDE
+.vscode/
