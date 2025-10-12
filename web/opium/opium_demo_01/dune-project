@@ -7,11 +7,11 @@
 (source
  (github username/reponame))
 
-(authors "Author Name <author@example.com>")
+(authors "Mingyu Choo <mingyuchoo@gmail.com>")
 
-(maintainers "Maintainer Name <maintainer@example.com>")
+(maintainers "Mingyu Choo <mingyuchoo@gmail.com>")
 
-(license LICENSE)
+(license BSD-3-Clause)
 
 (documentation https://url/to/documentation)
 

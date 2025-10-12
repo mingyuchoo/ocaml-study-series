@@ -11,7 +11,7 @@
 
 (maintainers "Maintainer Name")
 
-(license LICENSE)
+(license BSD-3-Clause)
 
 (documentation https://url/to/documentation)
 
@@ -19,7 +19,7 @@
  (name ch05_sorting)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml dune)
+ (depends (ocaml (>= 5.3.0)) dune)
  (tags
   (topics "to describe" your project)))
 
