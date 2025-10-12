@@ -40,6 +40,8 @@ let () =
 ```shell
 opam install --deps-only --yes .
 opam exec -- dune exec $(basename ${PWD})
+opam install dream caqti-driver-sqlite3 lwt_ppx ppx_yojson_conv
+opam install --deps-only --yes .
 ```
 
 ## Check the functionalities
