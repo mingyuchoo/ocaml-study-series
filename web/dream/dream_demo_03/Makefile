@@ -1,34 +1,21 @@
-.PHONY: build test
-
-CURRENT_DIR := $(notdir $(CURDIR))
-
-all: clean format doc build test run
-
-install:
-	opam update
-	opam upgrade
-	opam install dream
-
-clean:
-	opam exec -- dune clean
-
-format:
-	opam exec -- dune build @fmt --auto-promote
-
-doc:
-	opam exec -- dune build @doc
+.PHONY: build run clean init-db
 
 build:
 	opam exec -- dune build
 
-test:
-	opam exec -- dune runtest -f
-
-utop:
-	opam exec -- dune utop
-
-watch:
-	opam exec -- dune exec --watch "$(CURRENT_DIR)"
-
 run:
-	opam exec -- dune exec "$(CURRENT_DIR)"
+	opam exec -- dune exec dream_demo_03
+
+clean:
+	opam exec -- dune clean
+	rm -f db.sqlite
+
+init-db:
+	sqlite3 db.sqlite < init_db.sql
+
+setup:
+	opam install --deps-only --yes .
+	$(MAKE) init-db
+
+dev: init-db
+	$(MAKE) run

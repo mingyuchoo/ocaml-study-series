@@ -1,54 +1,108 @@
-# README
+# Todo App - OCaml Dream Framework
 
-## Project setting
+현대적이고 반응형인 Todo 애플리케이션입니다. OCaml Dream 프레임워크와 SQLite를 사용합니다.
 
-### Install essential tools
+## 기능
 
-Install OCaml with `opam`
+- ✅ Todo 항목 추가
+- ✅ Todo 완료/미완료 토글
+- ✅ Todo 삭제
+- ✅ 반응형 UI (모바일/데스크톱)
+- ✅ 현대적인 디자인
+- ✅ RESTful API
+
+## 설치 및 실행
+
+### 1. 필수 도구 설치
+
+OCaml과 opam 설치:
 ```shell
 opam install ocaml dune
 ```
 
-Install `Dream` and other packages
+필요한 패키지 설치:
 ```shell
-opam install dream
-opam install caqti-driver-sqlite3 ppx_yojson_conv
-```
-
-### Create a project
-```shell
-opam exec dune init project {project_name}
-```
-
-### Add `Dream` package to `bin/dune` file
-```ocaml
-(executable
-  (public_name {project_name})
-  (name main)
-  (libraries {project_name} dream))
-```
-
-## Write code to `main.ml` file
-```ocaml
-let () =
-  Dream.run(fun _ ->
-    Dream.html "Good morning, world!")
-```
-
-## Run project
-
-### Build and execute
-```shell
-opam install --deps-only --yes .
-opam exec -- dune exec $(basename ${PWD})
 opam install dream caqti-driver-sqlite3 lwt_ppx ppx_yojson_conv
-opam install --deps-only --yes .
 ```
 
-## Check the functionalities
+### 2. 프로젝트 설정
 
-If you go to [http://localhost:8080](http://localhost:8080), You can see `Good morning, world!`
+의존성 설치 및 데이터베이스 초기화:
+```shell
+make setup
+```
 
-## References
+또는 수동으로:
+```shell
+opam install --deps-only --yes .
+make init-db
+```
 
+### 3. 실행
+
+```shell
+make run
+```
+
+또는:
+```shell
+opam exec -- dune exec dream_demo_03
+```
+
+### 4. 접속
+
+브라우저에서 [http://localhost:8080](http://localhost:8080) 접속
+
+## API 엔드포인트
+
+- `GET /` - Todo 앱 UI
+- `GET /api/todos` - 모든 Todo 조회
+- `POST /api/todos` - 새 Todo 추가
+- `GET /api/todos/:id` - 특정 Todo 조회
+- `POST /api/todos/:id/toggle` - Todo 완료 상태 토글
+- `DELETE /api/todos/:id` - Todo 삭제
+
+## 프로젝트 구조
+
+```
+.
+├── bin/
+│   ├── main.eml.ml    # 메인 애플리케이션 (Dream EML 템플릿)
+│   └── dune           # 빌드 설정
+├── lib/               # 라이브러리 (필요시 확장)
+├── public/            # 정적 파일
+├── db.sqlite          # SQLite 데이터베이스
+├── init_db.sql        # 데이터베이스 스키마
+└── Makefile           # 빌드 스크립트
+
+```
+
+## 개발
+
+데이터베이스 초기화:
+```shell
+make init-db
+```
+
+빌드:
+```shell
+make build
+```
+
+클린:
+```shell
+make clean
+```
+
+## 기술 스택
+
+- **Backend**: OCaml + Dream Framework
+- **Database**: SQLite + Caqti
+- **Frontend**: Vanilla JavaScript + CSS
+- **Template**: Dream EML (Embedded ML)
+
+## 참고 자료
+
+- [Dream Framework](https://aantron.github.io/dream/)
 - [Dream Examples](https://github.com/aantron/dream/tree/master/example)
+- [Caqti Documentation](https://github.com/paurkedal/ocaml-caqti)

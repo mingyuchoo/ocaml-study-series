@@ -1,7 +1,7 @@
 (executable
- (public_name dream_demo_02)
+ (public_name dream_demo_03)
  (name main)
- (libraries dream_demo_02 dream caqti-driver-sqlite3)
+ (libraries dream_demo_03 dream caqti-driver-sqlite3)
  (preprocess
   (pps lwt_ppx ppx_yojson_conv)))
 
