@@ -1,0 +1,12 @@
+(executable
+ (public_name dream_demo_02)
+ (name main)
+ (libraries dream_demo_02 dream caqti-driver-sqlite3)
+ (preprocess
+  (pps lwt_ppx ppx_yojson_conv)))
+
+(rule
+ (targets main.ml)
+ (deps main.eml.ml)
+ (action
+  (run dream_eml %{deps} --workspace %{workspace_root})))
