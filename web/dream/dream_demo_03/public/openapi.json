@@ -67,8 +67,23 @@
           }
         },
         "responses": {
-          "302": {
-            "description": "생성 성공 후 리다이렉트"
+          "200": {
+            "description": "생성 성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
           },
           "400": {
             "description": "잘못된 요청"

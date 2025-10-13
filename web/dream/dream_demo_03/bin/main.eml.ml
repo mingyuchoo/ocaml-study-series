@@ -349,12 +349,14 @@ let render_todo_app request =
       document.querySelector('form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        await fetch('/api/todos', {
+        const response = await fetch('/api/todos', {
           method: 'POST',
           body: formData
         });
-        e.target.reset();
-        loadTodos();
+        if (response.ok) {
+          e.target.reset();
+          loadTodos();
+        }
       });
     </script>
   </body>
@@ -405,10 +407,10 @@ let () =
         Dream.json (Yojson.Safe.to_string json));
     
     Dream.post "/api/todos" (fun request ->
-        match%lwt Dream.form request with
+        match%lwt Dream.form ~csrf:false request with
         | `Ok ["title", title] when String.trim title <> "" ->
             let%lwt () = Dream.sql request (add_todo (String.trim title)) in
-            Dream.redirect request "/"
+            Dream.json "{\"success\": true}"
         | _ -> Dream.empty `Bad_Request);
     
     Dream.get "/api/todos/:id" (fun request ->
