@@ -219,6 +219,27 @@ let render_todo_app request =
         opacity: 0.3;
       }
       
+      .api-docs-link {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
+      }
+      
+      .api-docs-link a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.3s;
+      }
+      
+      .api-docs-link a:hover {
+        color: #5568d3;
+      }
+      
       @media (max-width: 600px) {
         .container {
           padding: 20px;
@@ -266,6 +287,12 @@ let render_todo_app request =
           <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
         </svg>
         <p>No todos yet. Add one above!</p>
+      </div>
+      
+      <div class="api-docs-link">
+        <a href="/api-docs" target="_blank">
+          📚 API 문서 보기 (Swagger UI)
+        </a>
       </div>
     </div>
     
@@ -400,6 +427,10 @@ let () =
         let id = Dream.param request "id" |> int_of_string in
         let%lwt () = Dream.sql request (delete_todo id) in
         Dream.json "{}");
+    
+    (* Swagger UI *)
+    Dream.get "/api-docs" (fun _request ->
+        Dream.redirect _request "/static/swagger.html");
     
     (* Static files *)
     Dream.get "/static/**" (Dream.static "./public");

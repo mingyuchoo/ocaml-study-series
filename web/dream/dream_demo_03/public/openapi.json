@@ -1,0 +1,193 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Todo App API",
+    "description": "OCaml Dream 프레임워크로 구현된 Todo 애플리케이션 REST API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "로컬 개발 서버"
+    }
+  ],
+  "paths": {
+    "/api/todos": {
+      "get": {
+        "summary": "모든 Todo 조회",
+        "description": "등록된 모든 Todo 항목을 조회합니다.",
+        "tags": ["Todos"],
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Todo"
+                  }
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "title": "OCaml로 웹 앱 만들기",
+                    "completed": true
+                  },
+                  {
+                    "id": 2,
+                    "title": "Dream 프레임워크 배우기",
+                    "completed": false
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "새 Todo 추가",
+        "description": "새로운 Todo 항목을 생성합니다.",
+        "tags": ["Todos"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Todo 제목"
+                  }
+                },
+                "required": ["title"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "302": {
+            "description": "생성 성공 후 리다이렉트"
+          },
+          "400": {
+            "description": "잘못된 요청"
+          }
+        }
+      }
+    },
+    "/api/todos/{id}": {
+      "get": {
+        "summary": "특정 Todo 조회",
+        "description": "ID로 특정 Todo 항목을 조회합니다.",
+        "tags": ["Todos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Todo ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Todo"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Todo를 찾을 수 없음"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Todo 삭제",
+        "description": "특정 Todo 항목을 삭제합니다.",
+        "tags": ["Todos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Todo ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "삭제 성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/todos/{id}/toggle": {
+      "post": {
+        "summary": "Todo 완료 상태 토글",
+        "description": "Todo의 완료/미완료 상태를 전환합니다.",
+        "tags": ["Todos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Todo ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "토글 성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Todo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Todo 고유 ID"
+          },
+          "title": {
+            "type": "string",
+            "description": "Todo 제목"
+          },
+          "completed": {
+            "type": "boolean",
+            "description": "완료 여부"
+          }
+        },
+        "required": ["id", "title", "completed"]
+      }
+    }
+  }
+}

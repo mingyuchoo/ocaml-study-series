@@ -10,6 +10,7 @@
 - ✅ 반응형 UI (모바일/데스크톱)
 - ✅ 현대적인 디자인
 - ✅ RESTful API
+- ✅ Swagger UI를 통한 API 문서 및 테스트
 
 ## 설치 및 실행
 
@@ -51,16 +52,23 @@ opam exec -- dune exec dream_demo_03
 
 ### 4. 접속
 
-브라우저에서 [http://localhost:8080](http://localhost:8080) 접속
+- Todo 앱: [http://localhost:8080](http://localhost:8080)
+- API 문서 (Swagger UI): [http://localhost:8080/api-docs](http://localhost:8080/api-docs)
 
 ## API 엔드포인트
 
+### UI
 - `GET /` - Todo 앱 UI
+- `GET /api-docs` - Swagger UI (API 문서 및 테스트)
+
+### REST API
 - `GET /api/todos` - 모든 Todo 조회
-- `POST /api/todos` - 새 Todo 추가
+- `POST /api/todos` - 새 Todo 추가 (form-data: title)
 - `GET /api/todos/:id` - 특정 Todo 조회
 - `POST /api/todos/:id/toggle` - Todo 완료 상태 토글
 - `DELETE /api/todos/:id` - Todo 삭제
+
+모든 API는 Swagger UI에서 직접 테스트할 수 있습니다.
 
 ## 프로젝트 구조
 
@@ -71,6 +79,8 @@ opam exec -- dune exec dream_demo_03
 │   └── dune           # 빌드 설정
 ├── lib/               # 라이브러리 (필요시 확장)
 ├── public/            # 정적 파일
+│   ├── swagger.html   # Swagger UI
+│   └── openapi.json   # OpenAPI 3.0 스펙
 ├── db.sqlite          # SQLite 데이터베이스
 ├── init_db.sql        # 데이터베이스 스키마
 └── Makefile           # 빌드 스크립트
