@@ -219,14 +219,14 @@ let render_todo_app request =
         opacity: 0.3;
       }
       
-      .api-docs-link {
+      .swagger-ui-link {
         text-align: center;
         margin-top: 30px;
         padding-top: 20px;
         border-top: 1px solid #e0e0e0;
       }
       
-      .api-docs-link a {
+      .swagger-ui-link a {
         color: #667eea;
         text-decoration: none;
         font-weight: 600;
@@ -236,7 +236,7 @@ let render_todo_app request =
         transition: color 0.3s;
       }
       
-      .api-docs-link a:hover {
+      .swagger-ui-link a:hover {
         color: #5568d3;
       }
       
@@ -289,8 +289,8 @@ let render_todo_app request =
         <p>No todos yet. Add one above!</p>
       </div>
       
-      <div class="api-docs-link">
-        <a href="/api-docs" target="_blank">
+      <div class="swagger-ui-link">
+        <a href="/swagger-ui" target="_blank">
           📚 API 문서 보기 (Swagger UI)
         </a>
       </div>
@@ -431,7 +431,7 @@ let () =
         Dream.json "{}");
     
     (* Swagger UI *)
-    Dream.get "/api-docs" (fun _request ->
+    Dream.get "/swagger-ui" (fun _request ->
         Dream.redirect _request "/static/swagger.html");
     
     (* Static files *)

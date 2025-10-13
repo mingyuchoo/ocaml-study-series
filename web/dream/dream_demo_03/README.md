@@ -53,13 +53,13 @@ opam exec -- dune exec dream_demo_03
 ### 4. 접속
 
 - Todo 앱: [http://localhost:8080](http://localhost:8080)
-- API 문서 (Swagger UI): [http://localhost:8080/api-docs](http://localhost:8080/api-docs)
+- API 문서 (Swagger UI): [http://localhost:8080/swagger-ui](http://localhost:8080/swagger-ui)
 
 ## API 엔드포인트
 
 ### UI
 - `GET /` - Todo 앱 UI
-- `GET /api-docs` - Swagger UI (API 문서 및 테스트)
+- `GET /swagger-ui` - Swagger UI (API 문서 및 테스트)
 
 ### REST API
 - `GET /api/todos` - 모든 Todo 조회
