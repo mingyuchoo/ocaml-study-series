@@ -1,0 +1,4 @@
+(executable
+ (public_name vanilla_rnn_init)
+ (name main)
+ (libraries vanilla_rnn_init))
