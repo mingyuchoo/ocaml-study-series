@@ -1,0 +1,4 @@
+(executable
+ (public_name korean-docx-parser)
+ (name main)
+ (libraries korean_docx_parser))

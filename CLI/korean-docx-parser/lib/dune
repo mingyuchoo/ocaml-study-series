@@ -1,0 +1,2 @@
+(library
+ (name korean_docx_parser))
