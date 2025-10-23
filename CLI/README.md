@@ -14,6 +14,7 @@ opam install ocaml-lsp-server odoc ocamlformat utop
 opam --version
 opam exec -- dune init project {project_name}
 cd {project_name}
+opam install --deps-only --yes .
 opam exec -- dune build @fmt --auto-promote
 opam exec -- dune build @doc
 opam exec -- dune build

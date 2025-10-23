@@ -6,7 +6,7 @@
 opam exec -- dune init project {project_name} --lib opium
 cd {project_name}
 opam install opium yojson logs alcotest
-opam install . --deps-only
+opam install --deps-only --yes .
 ```
 
 ## How to run server

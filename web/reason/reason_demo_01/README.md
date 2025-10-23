@@ -38,6 +38,8 @@ opam install dune ocaml-lsp-server odoc ocamlformat utop reason
 ```shell
 # Install dependencies
 make install
+# or
+make install --deps-only --yes .
 
 # Build and run
 make run

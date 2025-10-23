@@ -6,6 +6,7 @@
 opam exec -- dune init project <project_name>
 cd <project_name>
 # Edit source files
+opam install --deps-only --yes .
 opam exec -- dune clean
 opam exec -- dune build @fmt --auto-promote
 opam exec -- dune build @doc

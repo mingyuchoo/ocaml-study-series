@@ -39,6 +39,8 @@
 설치 예시:
 
 ```bash
+opam install --deps-only --yes .
+# or
 opam install -y sexplib ppx_deriving
 ```
 

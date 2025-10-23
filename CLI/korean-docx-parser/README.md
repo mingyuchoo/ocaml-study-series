@@ -19,6 +19,8 @@ DOCX 파일을 Markdown 형식으로 변환하는 OCaml 프로그램입니다.
 ## 설치
 
 ```bash
+opam install --deps-only --yes .
+# or
 opam install camlzip xmlm
 ```
 

@@ -11,8 +11,7 @@ opam install ocaml dune
 
 Install `Dream` and other packages
 ```shell
-opam install dream
-opam install caqti-driver-sqlite3 ppx_yojson_conv
+opam install dream caqti-driver-sqlite3 ppx_yojson_conv
 ```
 
 ### Create a project
@@ -40,9 +39,8 @@ let () =
 ### Build and execute
 ```shell
 opam install --deps-only --yes .
-opam exec -- dune exec $(basename ${PWD})
 opam install dream caqti-driver-sqlite3 lwt_ppx ppx_yojson_conv
-opam install --deps-only --yes .
+opam exec -- dune exec $(basename ${PWD})
 ```
 
 ## Check the functionalities

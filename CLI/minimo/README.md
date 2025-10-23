@@ -37,6 +37,7 @@ opam update
 opam switch list-available ocaml
 # 예시: opam switch create 5.2.1 ocaml-base-compiler.5.2.1
 opam install dune
+opam install --deps-only --yes .
 ```
 
 ## Makefile 작업 흐름
