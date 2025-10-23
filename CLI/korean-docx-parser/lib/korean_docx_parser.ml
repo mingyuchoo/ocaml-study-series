@@ -4,13 +4,14 @@ exception Parse_error of string
 
 (* XML 파싱 헬퍼 함수 *)
 let rec skip_element input depth =
-  if depth = 0 then ()
-  else
+  match depth with
+  | 0 -> ()
+  | _ -> (
     match Xmlm.input input with
     | `El_start _ -> skip_element input (depth + 1)
     | `El_end -> skip_element input (depth - 1)
     | `Data _ -> skip_element input depth
-    | `Dtd _ -> skip_element input depth
+    | `Dtd _ -> skip_element input depth )
 
 let rec extract_text_from_element input acc =
   match Xmlm.input input with
@@ -24,11 +25,12 @@ let rec extract_text_from_element input acc =
 
 let rec extract_paragraph_text input acc =
   match Xmlm.input input with
-  | `El_start ((_, tag), _) ->
-      if tag = "r" || tag = "t" then
+  | `El_start ((_, tag), _) -> (
+    match tag = "r" || tag = "t" with
+    | true ->
         let text_parts = extract_text_from_element input [] in
         extract_paragraph_text input (List.rev_append text_parts acc)
-      else (
+    | false ->
         skip_element input 1;
         extract_paragraph_text input acc )
   | `El_end -> acc
@@ -50,16 +52,16 @@ let extract_document_xml docx_path =
 (* XML에서 단락 추출 *)
 let rec extract_paragraphs input acc =
   match Xmlm.input input with
-  | `El_start ((_, tag), _) ->
-      if tag = "p" then
+  | `El_start ((_, tag), _) -> (
+    match tag with
+    | "p" -> (
         let text_parts = extract_paragraph_text input [] in
         let paragraph = String.concat "" text_parts in
-        if String.trim paragraph <> "" then
-          extract_paragraphs input (paragraph :: acc)
-        else extract_paragraphs input acc
-      else if tag = "body" || tag = "document" then
-        extract_paragraphs input acc
-      else (
+        match String.trim paragraph <> "" with
+        | true -> extract_paragraphs input (paragraph :: acc)
+        | false -> extract_paragraphs input acc )
+    | "body" | "document" -> extract_paragraphs input acc
+    | _ ->
         skip_element input 1;
         extract_paragraphs input acc )
   | `El_end -> acc
