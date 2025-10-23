@@ -1,0 +1,4 @@
+(executable
+ (public_name ch02_names_and_functions)
+ (name main)
+ (libraries ch02_names_and_functions))
