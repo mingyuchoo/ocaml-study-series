@@ -1,2 +1,3 @@
 (library
- (name korean_docx_parser))
+ (name korean_docx_parser)
+ (libraries camlzip xmlm))

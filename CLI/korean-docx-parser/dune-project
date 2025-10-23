@@ -17,10 +17,13 @@
 
 (package
  (name korean-docx-parser)
- (synopsis "A short synopsis")
- (description "A longer description")
- (depends ocaml)
+ (synopsis "DOCX to Markdown converter")
+ (description "A tool to convert DOCX files to Markdown format")
+ (depends 
+  ocaml
+  camlzip
+  xmlm)
  (tags
-  ("add topics" "to describe" your project)))
+  ("docx" "markdown" "converter")))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html
