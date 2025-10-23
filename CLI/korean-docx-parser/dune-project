@@ -5,24 +5,21 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github mingyuchoo/ocaml-study-series))
 
-(authors "Author Name <author@example.com>")
+(authors "Mingyu Choo")
 
-(maintainers "Maintainer Name <maintainer@example.com>")
+(maintainers "Mingyu Choo")
 
-(license LICENSE)
+(license MIT)
 
-(documentation https://url/to/documentation)
+(documentation https://github.com/mingyuchoo/ocaml-study-series)
 
 (package
  (name korean-docx-parser)
  (synopsis "DOCX to Markdown converter")
  (description "A tool to convert DOCX files to Markdown format")
- (depends 
-  ocaml
-  camlzip
-  xmlm)
+ (depends ocaml camlzip xmlm)
  (tags
   ("docx" "markdown" "converter")))
 
