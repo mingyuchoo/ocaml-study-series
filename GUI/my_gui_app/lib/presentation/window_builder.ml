@@ -54,42 +54,23 @@ let create_contact_list ~packing =
 let create_widgets window =
   (* Paned 위젯으로 좌우 분할 (크기 조절 핸들 포함) *)
   let paned = GPack.paned `HORIZONTAL ~packing:window#add () in
-  (* 왼쪽: 연락처 리스트 *)
+  (* 왼쪽: 입력 폼 *)
   let left_vbox =
     GPack.vbox ~spacing:5 ~border_width:5 ~packing:paned#add1 ()
   in
-  GMisc.label ~text:"Search:" ~xalign:0.0 ~packing:left_vbox#pack ()
+  GMisc.label ~text:"Contact Details" ~xalign:0.0 ~packing:left_vbox#pack ()
   |> ignore;
-  let search_entry = GEdit.entry ~packing:left_vbox#pack () in
-  let scrolled =
-    GBin.scrolled_window ~hpolicy:`AUTOMATIC ~vpolicy:`AUTOMATIC
-      ~packing:(left_vbox#pack ~expand:true ~fill:true)
-      ()
-  in
-  let contact_list, list_store, id_col, name_col, phone_col, email_col =
-    create_contact_list ~packing:scrolled#add
-  in
-  (* 오른쪽: 입력 폼 *)
-  let right_vbox =
-    GPack.vbox ~spacing:5 ~border_width:5 ~packing:paned#add2 ()
-  in
-  (* 초기 위치를 50:50으로 설정 (윈도우 너비의 절반) *)
-  paned#set_position 400;
-  GMisc.label ~text:"Contact Details" ~xalign:0.0 ~packing:right_vbox#pack ()
+  GMisc.label ~text:"Name:" ~xalign:0.0 ~packing:left_vbox#pack () |> ignore;
+  let name_entry = GEdit.entry ~packing:left_vbox#pack () in
+  GMisc.label ~text:"Phone:" ~xalign:0.0 ~packing:left_vbox#pack () |> ignore;
+  let phone_entry = GEdit.entry ~packing:left_vbox#pack () in
+  GMisc.label ~text:"Email:" ~xalign:0.0 ~packing:left_vbox#pack () |> ignore;
+  let email_entry = GEdit.entry ~packing:left_vbox#pack () in
+  GMisc.label ~text:"Address:" ~xalign:0.0 ~packing:left_vbox#pack ()
   |> ignore;
-  GMisc.label ~text:"Name:" ~xalign:0.0 ~packing:right_vbox#pack () |> ignore;
-  let name_entry = GEdit.entry ~packing:right_vbox#pack () in
-  GMisc.label ~text:"Phone:" ~xalign:0.0 ~packing:right_vbox#pack ()
-  |> ignore;
-  let phone_entry = GEdit.entry ~packing:right_vbox#pack () in
-  GMisc.label ~text:"Email:" ~xalign:0.0 ~packing:right_vbox#pack ()
-  |> ignore;
-  let email_entry = GEdit.entry ~packing:right_vbox#pack () in
-  GMisc.label ~text:"Address:" ~xalign:0.0 ~packing:right_vbox#pack ()
-  |> ignore;
-  let address_entry = GEdit.entry ~packing:right_vbox#pack () in
+  let address_entry = GEdit.entry ~packing:left_vbox#pack () in
   (* 버튼들 *)
-  let button_hbox = GPack.hbox ~spacing:5 ~packing:right_vbox#pack () in
+  let button_hbox = GPack.hbox ~spacing:5 ~packing:left_vbox#pack () in
   let add_button =
     GButton.button ~label:"Add" ~packing:button_hbox#pack ()
   in
@@ -102,6 +83,23 @@ let create_widgets window =
   let clear_button =
     GButton.button ~label:"Clear" ~packing:button_hbox#pack ()
   in
+  (* 오른쪽: 연락처 리스트 *)
+  let right_vbox =
+    GPack.vbox ~spacing:5 ~border_width:5 ~packing:paned#add2 ()
+  in
+  GMisc.label ~text:"Search:" ~xalign:0.0 ~packing:right_vbox#pack ()
+  |> ignore;
+  let search_entry = GEdit.entry ~packing:right_vbox#pack () in
+  let scrolled =
+    GBin.scrolled_window ~hpolicy:`AUTOMATIC ~vpolicy:`AUTOMATIC
+      ~packing:(right_vbox#pack ~expand:true ~fill:true)
+      ()
+  in
+  let contact_list, list_store, id_col, name_col, phone_col, email_col =
+    create_contact_list ~packing:scrolled#add
+  in
+  (* 초기 위치를 50:50으로 설정 (윈도우 너비의 절반) *)
+  paned#set_position 400;
   { window;
     name_entry;
     phone_entry;
