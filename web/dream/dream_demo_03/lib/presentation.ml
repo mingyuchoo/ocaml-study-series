@@ -132,10 +132,17 @@ end) = struct
 
   let create_handler request =
     match%lwt Dream.form request with
-    | `Ok ["name", name; "phone", phone; "email", email; "address", address] ->
-        let input = {name; phone; email; address} in
-        let* _id = Dream.sql request (Service.create_address input) in
-        Dream.redirect request "/addresses"
+    | `Ok fields ->
+        let name = List.assoc_opt "name" fields in
+        let phone = List.assoc_opt "phone" fields in
+        let email = List.assoc_opt "email" fields in
+        let address = List.assoc_opt "address" fields in
+        (match (name, phone, email, address) with
+        | (Some name, Some phone, Some email, Some address) ->
+            let input = {name; phone; email; address} in
+            let* _id = Dream.sql request (Service.create_address input) in
+            Dream.redirect request "/addresses"
+        | _ -> Dream.empty `Bad_Request)
     | _ -> Dream.empty `Bad_Request
 
   let edit_form_handler request =
@@ -148,10 +155,17 @@ end) = struct
   let update_handler request =
     let id = Dream.param request "id" |> int_of_string in
     match%lwt Dream.form request with
-    | `Ok ["name", name; "phone", phone; "email", email; "address", address] ->
-        let input = {name; phone; email; address} in
-        let* () = Dream.sql request (Service.update_address id input) in
-        Dream.redirect request "/addresses"
+    | `Ok fields ->
+        let name = List.assoc_opt "name" fields in
+        let phone = List.assoc_opt "phone" fields in
+        let email = List.assoc_opt "email" fields in
+        let address = List.assoc_opt "address" fields in
+        (match (name, phone, email, address) with
+        | (Some name, Some phone, Some email, Some address) ->
+            let input = {name; phone; email; address} in
+            let* () = Dream.sql request (Service.update_address id input) in
+            Dream.redirect request "/addresses"
+        | _ -> Dream.empty `Bad_Request)
     | _ -> Dream.empty `Bad_Request
 
   let delete_handler request =
