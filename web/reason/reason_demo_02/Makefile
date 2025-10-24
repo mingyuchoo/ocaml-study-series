@@ -5,6 +5,7 @@ CURRENT_DIR := $(notdir $(CURDIR))
 all: clean format doc build test run
 
 install:
+	opam install reason
 	opam install . --deps-only --with-test --yes
 
 deps:
