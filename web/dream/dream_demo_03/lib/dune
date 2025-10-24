@@ -1,5 +1,13 @@
 (library
  (name lib)
- (libraries dream caqti-driver-sqlite3 caqti-lwt lwt)
+ (libraries
+  dream
+  caqti-driver-sqlite3
+  caqti-lwt
+  lwt
+  domain
+  infrastructure
+  application
+  presentation)
  (preprocess
   (pps lwt_ppx ppx_yojson_conv)))
