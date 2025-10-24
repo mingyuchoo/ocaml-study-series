@@ -12,13 +12,15 @@ opam install --deps-only --yes .
 ## How to run server
 
 ```shell
-make run
+make install
+make upgrade
+make
 ```
 
 ## How to connect to server
 
 ```shell
-curl http://localhost:8000/person/john_doe/42
+curl -X GET http://localhost:8000/person/john_doe/42
 ```
 
 ## Fix Opium Errors

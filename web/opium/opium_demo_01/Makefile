@@ -5,7 +5,7 @@ CURRENT_DIR := $(notdir $(CURDIR))
 all: clean format doc build test run
 
 install:
-	opam install . --deps-only --with-test
+	opam install --deps-only --with-test --yes .
 	opam install opium yojson logs alcotest
 
 upgrade:
