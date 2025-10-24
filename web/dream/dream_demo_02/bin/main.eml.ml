@@ -155,7 +155,6 @@ let () =
   @@ Dream.sql_pool "sqlite3:db.sqlite"
   @@ Dream.sql_sessions
   @@ Dream.origin_referrer_check
-  @@ Dream.memory_sessions
   @@ count_requests
   @@ Dream.router [
     Dream.get "/" (fun request -> Dream.html (show_form request));
