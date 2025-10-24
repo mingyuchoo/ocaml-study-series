@@ -52,10 +52,11 @@ let create_contact_list ~packing =
 
 (** UI 컴포넌트 생성 *)
 let create_widgets window =
-  let main_hbox = GPack.hbox ~packing:window#add () in
+  (* Paned 위젯으로 좌우 분할 (크기 조절 핸들 포함) *)
+  let paned = GPack.paned `HORIZONTAL ~packing:window#add () in
   (* 왼쪽: 연락처 리스트 *)
   let left_vbox =
-    GPack.vbox ~spacing:5 ~border_width:5 ~packing:main_hbox#pack ()
+    GPack.vbox ~spacing:5 ~border_width:5 ~packing:paned#add1 ()
   in
   GMisc.label ~text:"Search:" ~xalign:0.0 ~packing:left_vbox#pack ()
   |> ignore;
@@ -70,8 +71,10 @@ let create_widgets window =
   in
   (* 오른쪽: 입력 폼 *)
   let right_vbox =
-    GPack.vbox ~spacing:5 ~border_width:5 ~packing:main_hbox#pack ()
+    GPack.vbox ~spacing:5 ~border_width:5 ~packing:paned#add2 ()
   in
+  (* 초기 위치를 50:50으로 설정 (윈도우 너비의 절반) *)
+  paned#set_position 400;
   GMisc.label ~text:"Contact Details" ~xalign:0.0 ~packing:right_vbox#pack ()
   |> ignore;
   GMisc.label ~text:"Name:" ~xalign:0.0 ~packing:right_vbox#pack () |> ignore;
