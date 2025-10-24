@@ -1,3 +1,5 @@
 (library
  (name infrastructure)
- (libraries domain))
+ (libraries domain lwt caqti-lwt)
+ (preprocess
+  (pps lwt_ppx)))

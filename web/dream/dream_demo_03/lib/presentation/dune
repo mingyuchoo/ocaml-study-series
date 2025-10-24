@@ -1,3 +1,5 @@
 (library
  (name presentation)
- (libraries application))
+ (libraries application domain infrastructure lwt dream)
+ (preprocess
+  (pps lwt_ppx)))
