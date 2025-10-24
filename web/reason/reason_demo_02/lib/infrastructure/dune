@@ -1,0 +1,12 @@
+(library
+ (name infrastructure)
+ (libraries
+  domain
+  lwt
+  caqti
+  caqti-driver-sqlite3
+  caqti-lwt
+  caqti-lwt.unix
+  uri)
+ (preprocess
+  (pps lwt_ppx)))

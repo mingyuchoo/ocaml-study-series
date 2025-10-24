@@ -1,0 +1,3 @@
+(library
+ (name reason_demo_02)
+ (libraries domain infrastructure application presentation))

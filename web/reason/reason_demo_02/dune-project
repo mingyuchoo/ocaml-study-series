@@ -1,0 +1,33 @@
+(lang dune 3.20)
+
+(name reason_demo_02)
+
+(generate_opam_files true)
+
+(source
+ (github username/reponame))
+
+(authors "Mingyu Choo <mingyuchoo@gmail.com>")
+
+(maintainers "Mingyu Choo <mingyuchoo@gmail.com>")
+
+(license BSD-3-Clause)
+
+(documentation https://url/to/documentation)
+
+(package
+ (name reason_demo_02)
+ (synopsis "Clean Architecture Address Book Web Application")
+ (description "A web-based address book application following Clean Architecture principles with SQLite storage")
+ (depends 
+  (ocaml (>= 5.3.0)) 
+  dune
+  dream
+  caqti
+  caqti-driver-sqlite3
+  lwt
+  yojson)
+ (tags
+  ("clean architecture" "address book" "web app" "sqlite")))
+
+; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html
