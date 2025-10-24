@@ -1,0 +1,200 @@
+주소록 웹 서비스 - Clean Architecture 다이어그램
+
+═══════════════════════════════════════════════════════════════════════════════
+                              사용자 (웹 브라우저)
+                                      │
+                                      ▼
+═══════════════════════════════════════════════════════════════════════════════
+                            Dream Web Framework
+                                      │
+                                      ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          PRESENTATION LAYER                                  │
+│                         (lib/presentation.ml)                                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  AddressHandlers 모듈 (펑터)                                                │
+│  ├─ list_handler          : GET /addresses                                  │
+│  ├─ new_form_handler      : GET /addresses/new                              │
+│  ├─ create_handler        : POST /addresses                                 │
+│  ├─ edit_form_handler     : GET /addresses/:id/edit                         │
+│  ├─ update_handler        : POST /addresses/:id                             │
+│  └─ delete_handler        : POST /addresses/:id/delete                      │
+│                                                                              │
+│  HTML 템플릿 렌더링                                                          │
+│  ├─ render_list(addresses, request) -> HTML                                 │
+│  └─ render_form(?address, request) -> HTML                                  │
+│                                                                              │
+└──────────────────────────────────┬──────────────────────────────────────────┘
+                                   │ 의존
+                                   ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          APPLICATION LAYER                                   │
+│                         (lib/application.ml)                                 │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  AddressService 모듈 (펑터)                                                 │
+│  ├─ create_address(input, db) -> int Lwt.t                                  │
+│  ├─ get_address(id, db) -> address option Lwt.t                             │
+│  ├─ get_all_addresses(db) -> address list Lwt.t                             │
+│  ├─ update_address(id, input, db) -> unit Lwt.t                             │
+│  └─ delete_address(id, db) -> unit Lwt.t                                    │
+│                                                                              │
+│  비즈니스 로직 조율                                                          │
+│  - 유효성 검사 (필요시)                                                      │
+│  - 트랜잭션 관리 (필요시)                                                    │
+│  - 비즈니스 규칙 적용                                                        │
+│                                                                              │
+└──────────────────────────────────┬──────────────────────────────────────────┘
+                                   │ 의존
+                                   ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            DOMAIN LAYER                                      │
+│                          (lib/domain.ml)                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  핵심 엔티티                                                                 │
+│  ┌────────────────────────────────────────────────────────────────┐        │
+│  │ type address = {                                                │        │
+│  │   id: int option;                                               │        │
+│  │   name: string;                                                 │        │
+│  │   phone: string;                                                │        │
+│  │   email: string;                                                │        │
+│  │   address: string;                                              │        │
+│  │ }                                                               │        │
+│  └────────────────────────────────────────────────────────────────┘        │
+│                                                                              │
+│  ┌────────────────────────────────────────────────────────────────┐        │
+│  │ type address_input = {                                          │        │
+│  │   name: string;                                                 │        │
+│  │   phone: string;                                                │        │
+│  │   email: string;                                                │        │
+│  │   address: string;                                              │        │
+│  │ }                                                               │        │
+│  └────────────────────────────────────────────────────────────────┘        │
+│                                                                              │
+│  리포지토리 인터페이스                                                       │
+│  ┌────────────────────────────────────────────────────────────────┐        │
+│  │ module type REPOSITORY = sig                                    │        │
+│  │   type db                                                       │        │
+│  │   val create : address_input -> db -> int Lwt.t                │        │
+│  │   val read : int -> db -> address option Lwt.t                 │        │
+│  │   val read_all : db -> address list Lwt.t                      │        │
+│  │   val update : int -> address_input -> db -> unit Lwt.t        │        │
+│  │   val delete : int -> db -> unit Lwt.t                         │        │
+│  │ end                                                             │        │
+│  └────────────────────────────────────────────────────────────────┘        │
+│                                                                              │
+└──────────────────────────────────▲──────────────────────────────────────────┘
+                                   │ 구현
+                                   │
+┌──────────────────────────────────┴──────────────────────────────────────────┐
+│                        INFRASTRUCTURE LAYER                                  │
+│                       (lib/infrastructure.ml)                                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  SqliteRepository : REPOSITORY                                               │
+│  ├─ type db = (module Caqti_lwt.CONNECTION)                                 │
+│  │                                                                           │
+│  ├─ create_query : SQL INSERT                                               │
+│  ├─ read_query : SQL SELECT WHERE id = ?                                    │
+│  ├─ read_all_query : SQL SELECT * ORDER BY name                             │
+│  ├─ update_query : SQL UPDATE WHERE id = ?                                  │
+│  └─ delete_query : SQL DELETE WHERE id = ?                                  │
+│                                                                              │
+│  Caqti를 통한 타입 안전한 쿼리 실행                                          │
+│  - 파라미터화된 쿼리 (SQL 인젝션 방지)                                      │
+│  - 타입 변환 (OCaml ↔ SQLite)                                               │
+│  - 에러 처리                                                                 │
+│                                                                              │
+└──────────────────────────────────┬──────────────────────────────────────────┘
+                                   │
+                                   ▼
+═══════════════════════════════════════════════════════════════════════════════
+                            SQLite Database
+                              (db.sqlite)
+                                   │
+                    ┌──────────────┴──────────────┐
+                    ▼                             ▼
+            ┌───────────────┐          ┌──────────────────┐
+            │   addresses   │          │  dream_session   │
+            ├───────────────┤          ├──────────────────┤
+            │ id (PK)       │          │ id (PK)          │
+            │ name          │          │ label            │
+            │ phone         │          │ expires_at       │
+            │ email         │          │ payload          │
+            │ address       │          └──────────────────┘
+            └───────────────┘
+═══════════════════════════════════════════════════════════════════════════════
+
+
+의존성 흐름 (Dependency Flow):
+═══════════════════════════════════════════════════════════════════════════════
+
+  Presentation ──depends on──> Application ──depends on──> Domain
+                                                              ▲
+                                                              │
+                                                         implements
+                                                              │
+                                            Infrastructure ───┘
+
+
+데이터 흐름 (Data Flow):
+═══════════════════════════════════════════════════════════════════════════════
+
+  사용자 요청
+      │
+      ▼
+  Presentation (HTTP 요청 파싱, 폼 데이터 추출)
+      │
+      ▼
+  Application (비즈니스 로직 적용)
+      │
+      ▼
+  Infrastructure (SQL 쿼리 실행)
+      │
+      ▼
+  Database (데이터 저장/조회)
+      │
+      ▼
+  Infrastructure (결과 변환)
+      │
+      ▼
+  Application (결과 처리)
+      │
+      ▼
+  Presentation (HTML 렌더링)
+      │
+      ▼
+  사용자 응답
+
+
+주요 설계 원칙:
+═══════════════════════════════════════════════════════════════════════════════
+
+1. 의존성 규칙 (Dependency Rule)
+   - 외부 레이어는 내부 레이어에 의존
+   - 내부 레이어는 외부 레이어를 알지 못함
+   - Domain은 어떤 레이어에도 의존하지 않음
+
+2. 인터페이스 분리 (Interface Segregation)
+   - REPOSITORY 인터페이스로 구현 분리
+   - Application은 인터페이스에만 의존
+   - Infrastructure는 인터페이스를 구현
+
+3. 의존성 주입 (Dependency Injection)
+   - 펑터를 통한 모듈 수준 DI
+   - AddressService(Repository)
+   - AddressHandlers(Service)
+
+4. 단일 책임 원칙 (Single Responsibility)
+   - 각 레이어는 하나의 책임만 가짐
+   - Presentation: UI/HTTP
+   - Application: 비즈니스 로직
+   - Domain: 엔티티/규칙
+   - Infrastructure: 데이터 접근
+
+5. 개방-폐쇄 원칙 (Open-Closed)
+   - 확장에는 열려있고 수정에는 닫혀있음
+   - 새로운 Repository 구현 추가 가능
+   - 기존 코드 수정 없이 확장 가능
