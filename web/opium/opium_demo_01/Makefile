@@ -5,13 +5,10 @@ CURRENT_DIR := $(notdir $(CURDIR))
 all: clean format doc build test run
 
 install:
-	opam install --deps-only --with-test --yes .
 	opam install opium yojson logs alcotest
-
-upgrade:
+	opam install --deps-only --with-test --yes .
 	opam update
 	opam upgrade
-	opam upgrade opium
 
 clean:
 	opam exec -- dune clean

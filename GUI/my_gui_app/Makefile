@@ -5,9 +5,10 @@ CURRENT_DIR := $(notdir $(CURDIR))
 all: clean format doc build test run
 
 install:
+	opam install lablgtk3 sqlite3
+	opam install --deps-only --yes .
 	opam update
 	opam upgrade
-	opam install dream
 
 clean:
 	opam exec -- dune clean

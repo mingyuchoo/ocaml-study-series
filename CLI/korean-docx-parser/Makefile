@@ -7,7 +7,6 @@ all: clean format doc build test run
 install:
 	opam update
 	opam upgrade
-	opam install dream
 
 clean:
 	opam exec -- dune clean
