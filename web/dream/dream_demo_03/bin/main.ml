@@ -1,6 +1,6 @@
 (* Main entry point - Wiring all layers together *)
 
-open Dream_demo_03
+open Lib
 
 (* Initialize the service with repository *)
 module Service = Application.AddressService(Infrastructure.SqliteRepository)

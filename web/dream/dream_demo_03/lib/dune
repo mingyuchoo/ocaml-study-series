@@ -1,5 +1,5 @@
 (library
- (name dream_demo_03)
+ (name lib)
  (libraries dream caqti-driver-sqlite3 caqti-lwt lwt)
  (preprocess
   (pps lwt_ppx ppx_yojson_conv)))
