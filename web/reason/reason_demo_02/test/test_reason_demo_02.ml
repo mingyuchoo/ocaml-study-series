@@ -1,6 +1,6 @@
 (* Basic tests for the address book application *)
 
-open Reason_demo_02
+open Lib
 
 let test_contact_creation () =
   let contact =

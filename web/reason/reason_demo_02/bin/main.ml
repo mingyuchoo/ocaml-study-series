@@ -1,7 +1,7 @@
 (* Main entry point - Web server *)
 
 open Lwt.Syntax
-open Reason_demo_02
+open Lib
 
 let () =
   Lwt_main.run
@@ -10,6 +10,7 @@ let () =
      Lwt.return () );
   Dream.run ~port:8080
   @@ Dream.logger
+  @@ Dream.memory_sessions
   @@ Dream.router
        [ (* Web UI Routes *)
          Dream.get "/" Web_handlers.index_handler;

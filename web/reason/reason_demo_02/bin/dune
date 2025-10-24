@@ -1,11 +1,4 @@
 (executable
- (public_name reason_demo_02)
  (name main)
- (libraries
-  reason_demo_02
-  domain
-  infrastructure
-  application
-  presentation
-  dream
-  lwt))
+ (public_name reason_demo_02)
+ (libraries lib domain infrastructure application presentation dream lwt))

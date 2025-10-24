@@ -49,7 +49,7 @@ let html_layout title content =
 </body>
 </html>|}
 
-let index_handler _request =
+let index_handler request =
   let repo = get_service () in
   let* contacts = Application.Contact_service.get_all_contacts repo in
   let rows =
@@ -81,6 +81,9 @@ let index_handler _request =
             <form method="POST" action="/contacts/|}
             ^ string_of_int id
             ^ {|/delete" style="display:inline;">
+              |}
+            ^ Dream.csrf_tag request
+            ^ {|
               <button type="submit" class="btn btn-danger">삭제</button>
             </form>
           </td>
@@ -112,11 +115,14 @@ let index_handler _request =
   in
   Dream.html (html_layout "주소록" content)
 
-let new_contact_form _request =
+let new_contact_form request =
   let content =
     {|
     <h2>새 연락처 추가</h2>
     <form method="POST" action="/contacts">
+      |}
+    ^ Dream.csrf_tag request
+    ^ {|
       <label>이름:</label>
       <input type="text" name="name" required>
       
@@ -179,6 +185,9 @@ let edit_contact_form request =
         <form method="POST" action="/contacts/|}
         ^ string_of_int id
         ^ {|">
+          |}
+        ^ Dream.csrf_tag request
+        ^ {|
           <label>이름:</label>
           <input type="text" name="name" value="|}
         ^ Domain.Contact.name contact
