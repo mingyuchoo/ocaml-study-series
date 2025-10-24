@@ -39,8 +39,15 @@ make run
 
 ## 프로젝트 구조
 
-- `bin/main.ml`: 메인 애플리케이션 코드
-- `dune`: 빌드 설정 파일
+이 프로젝트는 Clean Architecture 패턴을 따릅니다:
+
+- `bin/main.ml`: 애플리케이션 진입점
+- `lib/domain/`: 비즈니스 엔티티 및 이벤트
+- `lib/application/`: 유스케이스 및 비즈니스 로직
+- `lib/infrastructure/`: GTK 어댑터 (외부 의존성)
+- `lib/presentation/`: UI 컴포넌트 및 컨트롤러
+
+자세한 아키텍처 설명은 [ARCHITECTURE.md](ARCHITECTURE.md)를 참조하세요.
 
 ## 사용 방법
 

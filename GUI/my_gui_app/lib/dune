@@ -1,2 +1,4 @@
 (library
- (name my_gui_app))
+ (name my_gui_app)
+ (public_name my_gui_app)
+ (libraries domain application infrastructure presentation))

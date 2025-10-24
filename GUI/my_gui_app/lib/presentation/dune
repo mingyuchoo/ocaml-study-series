@@ -1,0 +1,4 @@
+(library
+ (name presentation)
+ (public_name my_gui_app.presentation)
+ (libraries domain application infrastructure))

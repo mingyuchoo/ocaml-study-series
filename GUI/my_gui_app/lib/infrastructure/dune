@@ -1,0 +1,4 @@
+(library
+ (name infrastructure)
+ (public_name my_gui_app.infrastructure)
+ (libraries lablgtk3))
