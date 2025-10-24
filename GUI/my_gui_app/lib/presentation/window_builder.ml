@@ -14,23 +14,105 @@ let create_menu_bar ~packing on_quit =
   quit_item#connect#activate ~callback:on_quit |> ignore
 
 (** 메인 윈도우 생성 *)
-let create_window title = GWindow.window ~title ~border_width:10 ()
+let create_window title =
+  let window =
+    GWindow.window ~title ~border_width:10 ~width:800 ~height:600 ()
+  in
+  window
+
+(** 연락처 리스트 뷰 생성 *)
+let create_contact_list ~packing =
+  let cols = new GTree.column_list in
+  let id_col = cols#add Gobject.Data.int in
+  let name_col = cols#add Gobject.Data.string in
+  let phone_col = cols#add Gobject.Data.string in
+  let email_col = cols#add Gobject.Data.string in
+  let list_store = GTree.list_store cols in
+  let view = GTree.view ~model:list_store ~packing () in
+  let renderer = GTree.cell_renderer_text [] in
+  let name_column =
+    GTree.view_column ~title:"Name"
+      ~renderer:(renderer, [("text", name_col)])
+      ()
+  in
+  let phone_column =
+    GTree.view_column ~title:"Phone"
+      ~renderer:(renderer, [("text", phone_col)])
+      ()
+  in
+  let email_column =
+    GTree.view_column ~title:"Email"
+      ~renderer:(renderer, [("text", email_col)])
+      ()
+  in
+  view#append_column name_column |> ignore;
+  view#append_column phone_column |> ignore;
+  view#append_column email_column |> ignore;
+  (view, list_store, id_col, name_col, phone_col, email_col)
 
 (** UI 컴포넌트 생성 *)
-let create_widgets window initial_state =
-  let vbox = GPack.vbox ~packing:window#add () in
-  (* 메뉴 바 *)
-  create_menu_bar ~packing:vbox#pack quit;
-  (* 입력 필드 *)
-  let entry =
-    GEdit.entry ~text:initial_state.Domain.Types.input_text
-      ~packing:vbox#pack ()
+let create_widgets window =
+  let main_hbox = GPack.hbox ~packing:window#add () in
+  (* 왼쪽: 연락처 리스트 *)
+  let left_vbox =
+    GPack.vbox ~spacing:5 ~border_width:5 ~packing:main_hbox#pack ()
   in
-  (* 표시 라벨 *)
-  let label =
-    GMisc.label ~text:initial_state.Domain.Types.display_text
-      ~packing:vbox#pack ()
+  GMisc.label ~text:"Search:" ~xalign:0.0 ~packing:left_vbox#pack ()
+  |> ignore;
+  let search_entry = GEdit.entry ~packing:left_vbox#pack () in
+  let scrolled =
+    GBin.scrolled_window ~hpolicy:`AUTOMATIC ~vpolicy:`AUTOMATIC
+      ~packing:(left_vbox#pack ~expand:true ~fill:true)
+      ()
   in
-  (* 제출 버튼 *)
-  let button = GButton.button ~label:"Submit" ~packing:vbox#pack () in
-  { window; entry; label; button }
+  let contact_list, list_store, id_col, name_col, phone_col, email_col =
+    create_contact_list ~packing:scrolled#add
+  in
+  (* 오른쪽: 입력 폼 *)
+  let right_vbox =
+    GPack.vbox ~spacing:5 ~border_width:5 ~packing:main_hbox#pack ()
+  in
+  GMisc.label ~text:"Contact Details" ~xalign:0.0 ~packing:right_vbox#pack ()
+  |> ignore;
+  GMisc.label ~text:"Name:" ~xalign:0.0 ~packing:right_vbox#pack () |> ignore;
+  let name_entry = GEdit.entry ~packing:right_vbox#pack () in
+  GMisc.label ~text:"Phone:" ~xalign:0.0 ~packing:right_vbox#pack ()
+  |> ignore;
+  let phone_entry = GEdit.entry ~packing:right_vbox#pack () in
+  GMisc.label ~text:"Email:" ~xalign:0.0 ~packing:right_vbox#pack ()
+  |> ignore;
+  let email_entry = GEdit.entry ~packing:right_vbox#pack () in
+  GMisc.label ~text:"Address:" ~xalign:0.0 ~packing:right_vbox#pack ()
+  |> ignore;
+  let address_entry = GEdit.entry ~packing:right_vbox#pack () in
+  (* 버튼들 *)
+  let button_hbox = GPack.hbox ~spacing:5 ~packing:right_vbox#pack () in
+  let add_button =
+    GButton.button ~label:"Add" ~packing:button_hbox#pack ()
+  in
+  let update_button =
+    GButton.button ~label:"Update" ~packing:button_hbox#pack ()
+  in
+  let delete_button =
+    GButton.button ~label:"Delete" ~packing:button_hbox#pack ()
+  in
+  let clear_button =
+    GButton.button ~label:"Clear" ~packing:button_hbox#pack ()
+  in
+  { window;
+    name_entry;
+    phone_entry;
+    email_entry;
+    address_entry;
+    search_entry;
+    contact_list;
+    list_store;
+    id_col;
+    name_col;
+    phone_col;
+    email_col;
+    add_button;
+    update_button;
+    delete_button;
+    clear_button
+  }

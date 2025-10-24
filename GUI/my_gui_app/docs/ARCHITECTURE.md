@@ -1,20 +1,21 @@
-# Clean Architecture 구조
+# Clean Architecture 구조 - 주소록 애플리케이션
 
-이 프로젝트는 Clean Architecture 원칙에 따라 4개의 레이어로 구성되어 있습니다.
+이 프로젝트는 Clean Architecture 원칙에 따라 4개의 레이어로 구성된 SQLite 기반 주소록 데스크탑 애플리케이션입니다.
 
 ## 레이어 구조
 
 ```
 lib/
 ├── domain/           # 도메인 레이어 (비즈니스 엔티티)
-│   ├── types.ml      # 애플리케이션 상태 타입
-│   └── events.ml     # 도메인 이벤트
+│   ├── types.ml      # 연락처 타입 및 애플리케이션 상태
+│   └── events.ml     # 도메인 이벤트 (AddContact, UpdateContact 등)
 │
 ├── application/      # 애플리케이션 레이어 (유스케이스)
-│   └── use_cases.ml  # 비즈니스 로직 처리
+│   └── use_cases.ml  # 비즈니스 로직 (검색, 필터링, 상태 관리)
 │
 ├── infrastructure/   # 인프라 레이어 (외부 의존성)
-│   └── gtk_adapter.ml # GTK 라이브러리 어댑터
+│   ├── gtk_adapter.ml    # GTK UI 라이브러리 어댑터
+│   └── sqlite_adapter.ml # SQLite 데이터베이스 어댑터
 │
 └── presentation/     # 프레젠테이션 레이어 (UI)
     ├── window_builder.ml    # UI 컴포넌트 생성
@@ -26,8 +27,10 @@ lib/
 ```
 presentation → application → domain
      ↓
-infrastructure
+infrastructure → domain
 ```
+
+모든 의존성은 안쪽(Domain)을 향합니다. Domain 레이어는 외부 의존성이 전혀 없습니다
 
 - **Domain**: 다른 레이어에 의존하지 않음 (순수 비즈니스 로직)
 - **Application**: Domain에만 의존

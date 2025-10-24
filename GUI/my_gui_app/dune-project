@@ -17,12 +17,13 @@
 
 (package
  (name my_gui_app)
- (synopsis "A short synopsis")
- (description "A longer description")
+ (synopsis "SQLite-based Address Book Desktop Application")
+ (description "A GTK-based address book application using SQLite for data persistence, built with Clean Architecture principles")
  (depends 
   ocaml
-  lablgtk3)
+  lablgtk3
+  sqlite3)
  (tags
-  ("add topics" "to describe" your project)))
+  ("address book" "gtk" "sqlite" "clean architecture")))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html

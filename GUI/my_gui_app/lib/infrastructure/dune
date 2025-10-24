@@ -1,4 +1,4 @@
 (library
  (name infrastructure)
  (public_name my_gui_app.infrastructure)
- (libraries lablgtk3))
+ (libraries lablgtk3 sqlite3 domain))

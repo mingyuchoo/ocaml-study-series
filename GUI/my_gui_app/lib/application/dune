@@ -1,4 +1,4 @@
 (library
  (name application)
  (public_name my_gui_app.application)
- (libraries domain))
+ (libraries domain str))
