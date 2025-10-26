@@ -1,0 +1,4 @@
+(executable
+ (name plugin_manager)
+ (modules plugin_manager)
+ (libraries plugin_interface dynlink))
