@@ -1,0 +1,4 @@
+(executable
+ (public_name plugin_manager)
+ (name main)
+ (libraries plugin_manager))

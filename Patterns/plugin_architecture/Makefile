@@ -34,4 +34,4 @@ watch:
 	opam exec -- dune exec --watch "$(CURRENT_DIR)"
 
 run:
-	opam exec -- dune exec plugin_manager/plugin_manager.exe -- _build/default/plugin_hello/plugin_hello.cmxs
+	opam exec -- dune exec plugin_manager -- _build/default/plugins/plugin_hello/lib/plugin_hello.cmxs

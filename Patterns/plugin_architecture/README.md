@@ -14,18 +14,27 @@ This project implements a minimal yet complete plugin system that allows OCaml a
 
 ```
 .
-├── dune-workspace          # Workspace configuration
-├── dune-project            # Project metadata
-├── README.md               # This file
-├── plugin_interface/       # Plugin interface library
-│   ├── dune
-│   └── plugin_interface.ml # PLUGIN module type definition
-├── plugin_manager/               # Plugin Manager
-│   ├── dune
-│   └── plugin_manager.ml         # Plugin loader and executor
-└── plugin_hello/           # Demo plugin
-    ├── dune
-    └── plugin_hello.ml     # "Hello, OCaml!" implementation
+├── dune-workspace              # Workspace configuration
+├── dune-project                # Project metadata
+├── README.md                   # This file
+├── plugin_interface/           # Plugin interface library
+│   ├── lib/
+│   │   ├── dune
+│   │   └── plugin_interface.ml # PLUGIN module type definition
+│   └── test/                   # Tests
+├── plugin_manager/             # Plugin Manager
+│   ├── bin/
+│   │   ├── dune
+│   │   └── main.ml             # Plugin loader and executor
+│   ├── lib/
+│   │   └── dune                # Empty library (for dependencies)
+│   └── test/                   # Tests
+└── plugins/                    # Plugins directory
+    └── plugin_hello/           # Demo plugin
+        ├── lib/
+        │   ├── dune
+        │   └── plugin_hello.ml # "Hello, OCaml!" implementation
+        └── test/               # Tests
 ```
 
 ## Building the Project
@@ -45,8 +54,8 @@ dune build
 
 This will compile:
 - The plugin interface library
-- The core application executable at `_build/default/plugin_manager/plugin_manager.exe`
-- The hello plugin as a dynamically loadable module at `_build/default/plugin_hello/plugin_hello.cmxs`
+- The core application executable at `_build/default/plugin_manager/bin/main.exe`
+- The hello plugin as a dynamically loadable module at `_build/default/plugins/plugin_hello/lib/plugin_hello.cmxs`
 
 ### Build Individual Components
 
@@ -54,10 +63,10 @@ You can also build specific components:
 
 ```bash
 # Build only the core application
-dune build plugin_manager/plugin_manager.exe
+dune build plugin_manager/bin/main.exe
 
 # Build only the hello plugin
-dune build plugin_hello/plugin_hello.cmxs
+dune build plugins/plugin_hello/lib/plugin_hello.cmxs
 ```
 
 ## Running the Application
@@ -67,12 +76,12 @@ dune build plugin_hello/plugin_hello.cmxs
 The recommended way to run the application is using `dune exec`:
 
 ```bash
-dune exec plugin_manager/plugin_manager.exe -- _build/default/plugin_hello/plugin_hello.cmxs
+dune exec plugin_manager -- _build/default/plugins/plugin_hello/lib/plugin_hello.cmxs
 ```
 
 Expected output:
 ```
-Successfully loaded plugin: _build/default/plugin_hello/plugin_hello.cmxs
+Successfully loaded plugin: _build/default/plugins/plugin_hello/lib/plugin_hello.cmxs
 Executing plugin: plugin_hello
 Hello, OCaml!
 Plugin execution completed successfully
@@ -83,7 +92,7 @@ Plugin execution completed successfully
 Alternatively, you can run the built executable directly:
 
 ```bash
-./_build/default/plugin_manager/plugin_manager.exe _build/default/plugin_hello/plugin_hello.cmxs
+./_build/default/plugin_manager/bin/main.exe _build/default/plugins/plugin_hello/lib/plugin_hello.cmxs
 ```
 
 ### Usage
@@ -101,12 +110,12 @@ Follow these steps to create your own plugin:
 ### 1. Create Plugin Directory
 
 ```bash
-mkdir my_plugin
+mkdir -p plugins/my_plugin/lib
 ```
 
 ### 2. Write Plugin Implementation
 
-Create `my_plugin/my_plugin.ml`:
+Create `plugins/my_plugin/lib/my_plugin.ml`:
 
 ```ocaml
 (* My custom plugin implementation *)
@@ -128,26 +137,25 @@ let () =
 
 ### 3. Create Dune Configuration
 
-Create `my_plugin/dune`:
+Create `plugins/my_plugin/lib/dune`:
 
 ```lisp
 (library
+ (public_name my_plugin)
  (name my_plugin)
- (modules my_plugin)
- (libraries plugin_interface)
- (modes plugin))
+ (libraries plugin_interface))
 ```
 
-**Important**: The `(modes plugin)` setting is crucial - it tells Dune to compile the library as a `.cmxs` file for dynamic loading.
+**Note**: Dune automatically generates `.cmxs` files for libraries when needed. The library will be compiled as a dynamically loadable module at `_build/default/plugins/my_plugin/lib/my_plugin.cmxs`.
 
 ### 4. Build and Run
 
 ```bash
 # Build the new plugin
-dune build my_plugin/my_plugin.cmxs
+dune build plugins/my_plugin/lib/my_plugin.cmxs
 
 # Run with the core application
-dune exec plugin_manager/plugin_manager.exe -- _build/default/my_plugin/my_plugin.cmxs
+dune exec plugin_manager -- _build/default/plugins/my_plugin/lib/my_plugin.cmxs
 ```
 
 ## Plugin Interface
@@ -186,7 +194,7 @@ The core application handles several error scenarios:
 
 Example error output:
 ```bash
-$ dune exec plugin_manager/plugin_manager.exe -- nonexistent.cmxs
+$ dune exec plugin_manager -- nonexistent.cmxs
 System error: Plugin file not found: nonexistent.cmxs
 ```
 

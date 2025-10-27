@@ -1,4 +1,4 @@
 (library
+ (public_name plugin_hello)
  (name plugin_hello)
- (modules plugin_hello)
  (libraries plugin_interface))
