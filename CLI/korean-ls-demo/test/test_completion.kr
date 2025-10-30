@@ -1,0 +1,14 @@
+// Test file for auto-completion
+
+함수 계산(a, b) {
+  변수 합계 = a + b
+  변수 차이 = a - b
+  반환 합계
+}
+
+함수 곱하기(x, y) {
+  반환 x * y
+}
+
+// Type below to test completion
+변수 결과 = 

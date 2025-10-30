@@ -1,0 +1,7 @@
+(include_subdirs unqualified)
+
+(library
+ (name korean_ls_demo)
+ (libraries yojson unix)
+ (preprocess
+  (pps ppx_deriving.show ppx_deriving_yojson)))

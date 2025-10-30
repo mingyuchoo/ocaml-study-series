@@ -1,0 +1,6 @@
+(executable
+ (public_name korean-ls-demo)
+ (name main)
+ (libraries korean_ls_demo yojson)
+ (preprocess
+  (pps ppx_deriving_yojson)))

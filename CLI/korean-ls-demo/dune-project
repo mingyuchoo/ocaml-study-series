@@ -1,0 +1,30 @@
+(lang dune 3.20)
+
+(name korean-ls-demo)
+
+(generate_opam_files true)
+
+(source
+ (github username/reponame))
+
+(authors "Author Name <author@example.com>")
+
+(maintainers "Maintainer Name <maintainer@example.com>")
+
+(license LICENSE)
+
+(documentation https://url/to/documentation)
+
+(package
+ (name korean-ls-demo)
+ (synopsis "Language Server Protocol implementation for Korean programming language")
+ (description "An OCaml-based Language Server that provides IDE features for Korean programming language, including syntax checking, auto-completion, hover information, and go-to-definition.")
+ (depends
+  (ocaml (>= 4.14))
+  dune
+  yojson
+  ppx_deriving_yojson)
+ (tags
+  ("language-server" "lsp" "korean" "ide")))
+
+; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html

@@ -1,0 +1,6 @@
+(test
+ (name test_korean_ls_demo))
+
+(test
+ (name test_logger)
+ (libraries korean_ls_demo))

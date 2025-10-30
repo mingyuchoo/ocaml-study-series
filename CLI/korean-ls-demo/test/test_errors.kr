@@ -1,0 +1,12 @@
+// Test file for error detection
+
+// Syntax error: missing closing brace
+함수 테스트() {
+  변수 x = 10
+
+// Undefined variable
+변수 y = 미정의변수
+
+// Duplicate definition
+함수 중복() { }
+함수 중복() { }
