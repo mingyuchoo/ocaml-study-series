@@ -43,10 +43,10 @@ let find_all () =
       let open Lwt.Infix in
       Conn.collect_list find_all_query ()
       >|= Result.map (fun rows ->
-              List.map
-                (fun (id, name, email, phone, address) ->
-                  Domain.Contact.create ~id name email phone address )
-                rows ) )
+          List.map
+            (fun (id, name, email, phone, address) ->
+              Domain.Contact.create ~id name email phone address )
+            rows ) )
 
 let find_by_id_query =
   let open Caqti_request.Infix in
@@ -58,9 +58,9 @@ let find_by_id id =
       let open Lwt.Infix in
       Conn.find_opt find_by_id_query id
       >|= Result.map (function
-            | Some (id, name, email, phone, address) ->
-                Some (Domain.Contact.create ~id name email phone address)
-            | None -> None ) )
+        | Some (id, name, email, phone, address) ->
+            Some (Domain.Contact.create ~id name email phone address)
+        | None -> None ) )
 
 let save_query =
   let open Caqti_request.Infix in

@@ -2,7 +2,7 @@
 
 CURRENT_DIR := $(notdir $(CURDIR))
 
-all: clean format doc build test run
+all: install clean format doc build test run
 
 install:
 	opam install opium yojson logs alcotest
