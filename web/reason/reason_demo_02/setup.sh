@@ -3,7 +3,7 @@
 echo "=== Address Book Setup ==="
 echo ""
 echo "Installing dependencies..."
-opam install . --deps-only --yes
+opam install --deps-only --yes . --yes
 
 echo ""
 echo "Building project..."

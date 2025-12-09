@@ -6,7 +6,7 @@ all: clean format doc build test run
 
 install:
 	opam install reason
-	opam install . --deps-only --with-test --yes
+	opam install --deps-only --yes . --with-test --yes
 
 deps:
 	opam install dream caqti caqti-driver-sqlite3 caqti-lwt lwt yojson --yes

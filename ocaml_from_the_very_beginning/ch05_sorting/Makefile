@@ -5,7 +5,7 @@ CURRENT_DIR := $(notdir $(CURDIR))
 all: clean format doc build test run
 
 install:
-	opam install . --deps-only
+	opam install --deps-only --yes .
 	opam update
 	opam upgrade
 	opam install dream

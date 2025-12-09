@@ -45,7 +45,7 @@ An OCaml-based Language Server that provides IDE features for Korean programming
 
 ```bash
 # Install OCaml dependencies
-opam install . --deps-only
+opam install --deps-only --yes .
 
 # Build the language server
 dune build

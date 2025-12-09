@@ -14,7 +14,7 @@ make install
 
 # 방법 3: 수동 설치
 opam install dream caqti caqti-driver-sqlite3 caqti-lwt lwt yojson --yes
-opam install . --deps-only --yes
+opam install --deps-only --yes . --yes
 ```
 
 ### 2. 빌드
@@ -145,7 +145,7 @@ Dream.run ~port:3000  (* 8080 대신 3000 사용 *)
 ```bash
 opam update
 opam upgrade
-opam install . --deps-only --yes
+opam install --deps-only --yes . --yes
 ```
 
 ### 빌드 오류
