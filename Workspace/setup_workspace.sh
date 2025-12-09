@@ -119,7 +119,7 @@ EOF
 # ------------------------------------------------------------
 echo "🌿 Creating .ocamlformat files..."
 cat > .ocamlformat <<EOF
-version = 0.27.0
+version = 0.28.1
 version-check = true
 profile = ocamlformat
 margin = 77
