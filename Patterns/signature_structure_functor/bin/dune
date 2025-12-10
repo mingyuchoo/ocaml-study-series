@@ -1,0 +1,4 @@
+(executable
+ (public_name signature_structure_functor)
+ (name main)
+ (libraries signature_structure_functor))
